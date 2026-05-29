@@ -1,4 +1,21 @@
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/pannels/Header-top.php');?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . '/pannels/Header-top.php'); ?>
+
+<?php require('admin/includes/conn.php'); ?>
+
+<?php
+
+$productData = [];
+$productQuery = $conn->query("SELECT * FROM `product` WHERE Status = 1 ORDER BY ID DESC");
+while ($product = $productQuery->fetch_assoc()) {
+    $productData[] = $product;
+
+
+}
+// echo "<pre>";
+// print_r($productData);
+// echo"</pre>";
+// exit;
+ ?>
 
 
 <style>
@@ -7,6 +24,7 @@
         display: flex;
         align-items: center;
     }
+
     .service-list ul {
         list-style: none;
         padding-left: 0;
@@ -36,50 +54,62 @@
     .mt-2 {
         margin-top: 10px;
     }
+
     .blog-grid .icon-btn:after {
-        border-color:black;
+        border-color: black;
     }
-    .blog-grid:after, .blog-grid:before {
-   
-    box-shadow: inset 30px 30px 0 0 #000000 !important;}
+
+    .blog-grid:after,
+    .blog-grid:before {
+
+        box-shadow: inset 30px 30px 0 0 #000000 !important;
+    }
 </style>
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/pannels/Header-bottom.php') ?>
 <section class="main-home-alignment" style="background:black;">
     <div class="container-fluid px-lg-5 px-xl-5 px-md-3 px-sm-2">
         <div class="row gy-4">
             <!-- SRG Card - Plumbing & Electrical Services -->
-            <div class="col-xl-4 col-md-6">
-                <div class="blog-grid">
-                    <a href="/srg/index.php" class="blog-img">
-                        <img src="assets/img/blog/blog_4_1.jpg" alt="SRG Services">
-                    </a>
-                    <a href="/srg/" class="icon-btn"><i class="far fa-arrow-right"></i></a>
-                    <div class="blog-content">                        
-                        <h3 class="box-title"><a href="/srg/">SRG - Plumbing & Electrical Services</a></h3>
-                        <p class="box-text">Professional plumbing, electrical wiring, AC repair, water heater fixing, and home maintenance services 24/7.</p>
-                        <div class="service-list">
-                            <div class="row">
-                                <div class="col-12 col-md-6">
-                                    <ul>
-                                        <li><i class="fas fa-check-circle"></i> Plumbing Repairs</li>
-                                        <li><i class="fas fa-check-circle"></i> Electrical Wiring</li>
+            <?php foreach ($productData as $products): ?>
+                <div class="col-xl-4 col-md-6">
+                    <div class="blog-grid">
+                        <a href="/srg/index.php?url=<?= ($products['Slug']) ?>" class="blog-img">
+                            <!-- <img src="assets/img/blog/blog_4_1.jpg" alt="SRG Services"> -->
+                        <img src="./admin<?= ($products['Image']) ?>" alt="<?= ($products['Name']) ?>">
 
-                                    </ul>
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    <ul>
-                                        <li><i class="fas fa-check-circle"></i> AC Repair & Service </li>
-                                        <li><i class="fas fa-check-circle"></i> Water Heater Fix</li>
-                                    </ul>
+                        </a>
+                        <a href="/srg/index.php?url=<?= ($products['Slug']) ?>" class="icon-btn"><i class="far fa-arrow-right"></i></a>
+                        <div class="blog-content">
+                            <h3 class="box-title"><a href="/srg/index.php?url=<?= ($products['Slug']) ?>"><?= ($products['Name']) ?></a></h3>
+                            <!-- <p class="box-text">Professional plumbing, electrical wiring, AC repair, water heater fixing,
+                                and home maintenance services 24/7.</p> -->
+                                 <p class="box-text"><?= ($products['Content']) ?></p>
+                            <div class="service-list">
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <ul>
+                                            <li><i class="fas fa-check-circle"></i> <?= ($products['Services']) ?></li>
+                                            <!-- <li><i class="fas fa-check-circle"></i> Electrical Wiring</li> -->
+
+                                        </ul>
+                                    </div>
+                                    <!-- <div class="col-12 col-md-6">
+                                        <ul>
+                                            <li><i class="fas fa-check-circle"></i> AC Repair & Service </li>
+                                            <li><i class="fas fa-check-circle"></i> Water Heater Fix</li>
+                                        </ul>
+                                    </div> -->
                                 </div>
                             </div>
+                            <a href="/srg/index.php?url=<?= ($products['Slug']) ?>" class="th-btn style4 mt-2">View All Services <i
+                                    class="far fa-arrow-right ms-2"></i></a>
                         </div>
-                        <a href="/srg/" class="th-btn style4 mt-2">View All Services <i class="far fa-arrow-right ms-2"></i></a>
                     </div>
                 </div>
-            </div>
+            <?php endforeach; ?>
             <!-- SBS Card - Security & Sanitary Services -->
-            <div class="col-xl-4 col-md-6">
+
+            <!-- <div class="col-xl-4 col-md-6">
                 <div class="blog-grid">
                     <a href="/sbs/" class="blog-img">
                         <img src="assets/img/blog/blog_4_2.jpg" alt="SBS Services">
@@ -108,9 +138,11 @@
                         <a href="/sbs/" class="th-btn style4 mt-2">View All Services <i class="far fa-arrow-right ms-2"></i></a>
                     </div>
                 </div>
-            </div>
+            </div> -->
+
+
             <!-- Lord Krishna Card - Manpower Services -->
-            <div class="col-xl-4 col-md-6">
+            <!-- <div class="col-xl-4 col-md-6">
                 <div class="blog-grid">
                     <a href="/lord-krishna/" class="blog-img">
                         <img src="assets/img/blog/blog_4_3.jpg" alt="Lord Krishna Services">
@@ -139,7 +171,7 @@
                         <a href="/lord-krishna/" class="th-btn style4 mt-2">View All Services <i class="far fa-arrow-right ms-2"></i></a>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
