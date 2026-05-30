@@ -73,7 +73,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/admin/includes/header-top.php');?>
         var table = $('#blogs-table').DataTable({
             'processing': true,
             'ajax': {
-                'url': '/admin/app/product/server.php',
+                'url': '/admin/app/product/server',
                 'type': 'POST'
             },
             'columns': [{
