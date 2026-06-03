@@ -1,5 +1,5 @@
 <?php
-include($_SERVER['DOCUMENT_ROOT'] . '/admin/includes/header-top.php');?>
+include($_SERVER['DOCUMENT_ROOT'] . '/admin/includes/header-top.php'); ?>
 
 <style>
     .modal-dialog.modal-dialog-centered {
@@ -8,7 +8,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/admin/includes/header-top.php');?>
 </style>
 
 
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/admin/includes/header-bottom.php');  ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . '/admin/includes/header-bottom.php'); ?>
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/admin/includes/top-menu.php'); ?>
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/admin/includes/menu.php'); ?>
 
@@ -23,14 +23,17 @@ include($_SERVER['DOCUMENT_ROOT'] . '/admin/includes/header-top.php');?>
                 <div class="card dz-card" id="accordion-four">
                     <div class="card-header flex-wrap d-flex justify-content-between">
                         <div>
-                            <h4 class="card-title">Banner</h4>
+                            <h4 class="card-title">Working Process</h4>
                         </div>
-                        <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" onclick="add('banner','md')" data-bs-target="#modalGrid">Add Banner</button>
+                        <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal"
+                            onclick="add('working_process','md')" data-bs-target="#modalGrid">Add Working
+                            Process</button>
 
                     </div>
                     <!-- /tab-content -->
                     <div class="tab-content" id="myTabContent-3">
-                        <div class="tab-pane fade show active" id="withoutBorder" role="tabpanel" aria-labelledby="home-tab-3">
+                        <div class="tab-pane fade show active" id="withoutBorder" role="tabpanel"
+                            aria-labelledby="home-tab-3">
                             <div class="card-body pt-0">
                                 <div class="table-responsive">
                                     <table id="blogs-table" class="display table" style="min-width: 845px">
@@ -38,9 +41,9 @@ include($_SERVER['DOCUMENT_ROOT'] . '/admin/includes/header-top.php');?>
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Name</th>
-                                                <th>Image</th>
-                                                <th>Product Name </th>
                                                 <th>Title</th>
+                                                <th>Description</th>
+                                                <th>Product Name</th>
                                                 <th>Status </th>
                                                 <th>Action</th>
                                             </tr>
@@ -52,7 +55,8 @@ include($_SERVER['DOCUMENT_ROOT'] . '/admin/includes/header-top.php');?>
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade " id="withoutBorder-html" role="tabpanel" aria-labelledby="home-tab-3">
+                        <div class="tab-pane fade " id="withoutBorder-html" role="tabpanel"
+                            aria-labelledby="home-tab-3">
                             <div class="card-body pt-0 p-0 code-area">
 
                             </div>
@@ -70,59 +74,61 @@ include($_SERVER['DOCUMENT_ROOT'] . '/admin/includes/header-top.php');?>
 
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/admin/includes/footer-top.php'); ?>
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
         var table = $('#blogs-table').DataTable({
             'processing': true,
             'ajax': {
-                'url': '/admin/app/banner/server',
+                'url': '/admin/app/working_process/server',
                 'type': 'POST'
             },
             'columns': [{
-                    data: 'No'
-                },
-                {
-                    data: 'Name'
-                },
-                {
-                    data: 'Photo',
-                    render: function(data, type, row) {
-                        return '<img src="/admin/' + row.Photo + '" width="70">';
-                    },
-                    visible: true
+                data: 'No'
+            },
+            {
+                data: 'Name'
+            },
+            {
+                data: 'Title'
+            },
+            {
+                data: 'Description'
+            },
+            // {
+            //     data: 'Photo',
+            //     render: function (data, type, row) {
+            //         return '<img src="/admin/' + row.Photo + '" width="70">';
+            //     },
+            //     visible: true
 
+            // },
+            {
+                data: 'Product_name'
+            },
+            {
+                data: 'Status',
+                render: function (data, type, row) {
+                    var active = data == 1 ? 'Active' : 'Inactive';
+                    var checked = row.Status == 1 ? 'checked' : '';
+                    return '<label class="switch" for="status-switch-' + row.ID + '"> <input onclick="changeStatus(&#39;working_process&#39;, &#39;' + row.ID + '&#39;)" type="checkbox" ' + checked + ' id="status-switch-' + row.ID + '"><span class="slider round"></span></label>';
                 },
-                {
-                    data: 'Product_name'
-                },
-                 {
-                    data: 'Title'
-                },
-
-                 {
-                    data: 'Status',
-                    render: function(data, type, row) {
-                        var active = data == 1 ? 'Active' : 'Inactive';
-                        var checked = row.Status == 1 ? 'checked' : '';
-                        return '<label class="switch" for="status-switch-' + row.ID + '"> <input onclick="changeStatus(&#39;banner&#39;, &#39;' + row.ID + '&#39;)" type="checkbox" ' + checked + ' id="status-switch-' + row.ID + '"><span class="slider round"></span></label>';
-                    },
-                    visible: true
-                },
+                visible: true
+            },
 
 
-                {
-                    data: 'ID',
-                    render: function(data, type, row) {
-                        return '<div class="ms-auto"><a href="javascript:void(0);" onclick="edit(&#39;banner&#39;, &#39;' + data + '&#39, &#39;md&#39;)" class="btn btn-primary btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a><a href="javascript:void(0);" onclick="destroy(&#39;banner&#39;, &#39;' + data + '&#39)" class="btn btn-danger btn-xs sharp"><i class="fa fa-trash"></i></a></div>';
-                    },
-                    visible: true
+            {
+                data: 'ID',
+                render: function (data, type, row) {
+                    return '<div class="ms-auto"><a href="javascript:void(0);" onclick="edit(&#39;working_process&#39;, &#39;' + data + '&#39, &#39;md&#39;)" class="btn btn-primary btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a><a href="javascript:void(0);" onclick="destroy(&#39;working_process&#39;, &#39;' + data + '&#39)" class="btn btn-danger btn-xs sharp"><i class="fa fa-trash"></i></a></div>';
                 },
+                visible: true
+            },
             ],
             'searching': true,
             'paging': true,
             'lengthChange': true,
         });
 
-        $('input[aria-controls="blogs-table"]').keyup(function() {
+        $('input[aria-controls="blogs-table"]').keyup(function () {
             var searchValue = $(this).val();
             table.search(searchValue).draw();
         });

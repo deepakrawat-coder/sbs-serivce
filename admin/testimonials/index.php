@@ -23,9 +23,9 @@ include($_SERVER['DOCUMENT_ROOT'] . '/admin/includes/header-top.php');?>
                 <div class="card dz-card" id="accordion-four">
                     <div class="card-header flex-wrap d-flex justify-content-between">
                         <div>
-                            <h4 class="card-title">Banner</h4>
+                            <h4 class="card-title">Testimonials</h4>
                         </div>
-                        <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" onclick="add('banner','md')" data-bs-target="#modalGrid">Add Banner</button>
+                        <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" onclick="add('testimonials','md')" data-bs-target="#modalGrid">Add Testimonial</button>
 
                     </div>
                     <!-- /tab-content -->
@@ -74,7 +74,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/admin/includes/header-top.php');?>
         var table = $('#blogs-table').DataTable({
             'processing': true,
             'ajax': {
-                'url': '/admin/app/banner/server',
+                'url': '/admin/app/testimonials/server',
                 'type': 'POST'
             },
             'columns': [{
@@ -103,7 +103,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/admin/includes/header-top.php');?>
                     render: function(data, type, row) {
                         var active = data == 1 ? 'Active' : 'Inactive';
                         var checked = row.Status == 1 ? 'checked' : '';
-                        return '<label class="switch" for="status-switch-' + row.ID + '"> <input onclick="changeStatus(&#39;banner&#39;, &#39;' + row.ID + '&#39;)" type="checkbox" ' + checked + ' id="status-switch-' + row.ID + '"><span class="slider round"></span></label>';
+                        return '<label class="switch" for="status-switch-' + row.ID + '"> <input onclick="changeStatus(&#39;testimonials&#39;, &#39;' + row.ID + '&#39;)" type="checkbox" ' + checked + ' id="status-switch-' + row.ID + '"><span class="slider round"></span></label>';
                     },
                     visible: true
                 },
@@ -112,7 +112,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/admin/includes/header-top.php');?>
                 {
                     data: 'ID',
                     render: function(data, type, row) {
-                        return '<div class="ms-auto"><a href="javascript:void(0);" onclick="edit(&#39;banner&#39;, &#39;' + data + '&#39, &#39;md&#39;)" class="btn btn-primary btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a><a href="javascript:void(0);" onclick="destroy(&#39;banner&#39;, &#39;' + data + '&#39)" class="btn btn-danger btn-xs sharp"><i class="fa fa-trash"></i></a></div>';
+                        return '<div class="ms-auto"><a href="javascript:void(0);" onclick="edit(&#39;testimonials&#39;, &#39;' + data + '&#39, &#39;md&#39;)" class="btn btn-primary btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a><a href="javascript:void(0);" onclick="destroy(&#39;testimonials&#39;, &#39;' + data + '&#39)" class="btn btn-danger btn-xs sharp"><i class="fa fa-trash"></i></a></div>';
                     },
                     visible: true
                 },

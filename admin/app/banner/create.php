@@ -7,7 +7,7 @@ require '../../includes/helper.php'; ?>
 </div>
 <div class="card-body">
     <div class="form-validation">
-        <form class="needs-validation" role="form" id="form-add-stream" action="/admin/app/banner/store.php"
+        <form class="needs-validation" role="form" id="form-add-stream" action="/admin/app/banner/store"
             method="POST" enctype="multipart/form-data">
             <div class="row">
                 <div class="mb-3 col-md-6">
@@ -91,6 +91,9 @@ require '../../includes/helper.php'; ?>
 
 
 
+
+
+
 <script>
     $(document).ready(function () {
         $('#form-add-stream').validate({
@@ -139,7 +142,7 @@ require '../../includes/helper.php'; ?>
                         if (data.status == 200) {
                             $('.modal').modal('hide');
                             toastr.success(data.message, 'Success');
-                            $('#courses-table').DataTable().ajax.reload(null, false);
+                            $('#blogs-table').DataTable().ajax.reload(null, false);
                         } else {
                             $(':input[type="submit"]').prop('disabled', false);
                             toastr.error(data.message, 'Error');

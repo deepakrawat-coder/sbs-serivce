@@ -2,12 +2,12 @@
 require '../../includes/helper.php'; ?>
 
 <div class="modal-header">
-    <h5 class="modal-title">Add About us</h5>
+    <h5 class="modal-title">Add Our Clients</h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 </div>
 <div class="card-body">
     <div class="form-validation">
-        <form class="needs-validation" role="form" id="form-add-stream" action="/admin/app/about_us/store"
+        <form class="needs-validation" role="form" id="form-add-stream" action="/admin/app/our_trusted_clients/store"
             method="POST" enctype="multipart/form-data">
             <div class="row">
                 <div class="mb-3 col-md-6">
@@ -25,17 +25,7 @@ require '../../includes/helper.php'; ?>
 
                 <div class="mb-3 col-md-6">
                     <label class="form-label">Name <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="name" placeholder="Enter a Name.." required>
-                </div>
-
-                <div class="mb-3 col-md-6">
-                    <label class="form-label">Year Exp <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="year_exp" placeholder="Enter a exp.." required>
-                </div>
-
-                <div class="mb-3 col-md-6">
-                    <label class="form-label">Circle Text <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="circle_text" placeholder="Enter a circle text.."
+                    <input type="text" class="form-control" name="name" placeholder="Enter a  Name.."
                         required>
                 </div>
 
@@ -44,45 +34,6 @@ require '../../includes/helper.php'; ?>
                     <input type="file" class="form-control" name="photo"
                         accept="image/png, image/jpg, image/jpeg, image/svg, image/avif" required>
                 </div>
-
-                <div class="mb-3 col-md-6">
-                    <label class="form-label">Phone <span class="text-danger">*</span></label>
-                    <input type="tel" id="number" class="form-control" name="phone"
-                        onkeypress="return onlyNumberKey(event)" maxlength="10" minlength="10"
-                        requiredplaceholder="Enter a phone.." required>
-                </div>
-               
-                <div class="mb-3 col-md-12">
-                    <label class="form-label">Content <span class="text-danger">*</span></label>
-                    <textarea class="ckeditor" cols="80" id="editor" name="content" rows="10"></textarea>
-                </div>
-
-
-                <!-- <hr>
-                <h3>SEO</h3>
-
-
-                <div class="mb-3 col-md-6">
-                    <label class="form-label">Meta Title
-                    </label>
-                    <input type="text" class="form-control" name="meta_title" placeholder="Enter a Meta Title..">
-                </div>
-                <div class="mb-3 col-md-6">
-                    <label class="form-label">Meta Key
-                    </label>
-                    <input type="text" class="form-control" name="meta_key" placeholder="Enter a Meta Key..">
-                </div>
-                <div class="mb-3 col-md-12">
-                    <label class="form-label">Meta Description</label>
-                    <textarea cols="2" class="form-control" name="meta_description"
-                        placeholder="Enter a Meta Description.."></textarea>
-                </div> -->
-
-                <!-- <div class="mb-3 col-md-12">
-                    <label class="form-label">Order By <span class="text-danger">*</span></label>
-                    <input type="number" min="0" class="form-control" name="position" placeholder="Enter a Position.."
-                        required>
-                </div> -->
 
                 <div class="modal-footer clearfix text-end">
                     <div class="col-md-4 m-t-10 sm-m-t-10">
@@ -94,6 +45,9 @@ require '../../includes/helper.php'; ?>
         </form>
     </div>
 </div>
+
+
+
 
 
 
@@ -130,7 +84,7 @@ require '../../includes/helper.php'; ?>
             },
             submitHandler: function (form) {
                 var formData = new FormData(form);
-                formData.append('content', CKEDITOR.instances['editor'].getData());
+                // formData.append('content', CKEDITOR.instances['editor'].getData());
 
 
                 $.ajax({
@@ -159,10 +113,4 @@ require '../../includes/helper.php'; ?>
             }
         });
     });
-</script>
-
-
-
-<script>
-    CKEDITOR.replace('editor');
 </script>

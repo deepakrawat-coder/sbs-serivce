@@ -14,7 +14,7 @@ if (isset($_GET['id'])) {
 </div>
 <div class="card-body">
     <div class="form-validation">
-        <form class="needs-validation" role="form" id="form-add-stream" action="/admin/app/banner/update.php" method="POST"
+        <form class="needs-validation" role="form" id="form-add-stream" action="/admin/app/banner/update" method="POST"
             enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?= $getdata['ID'] ?>">
 
@@ -142,7 +142,7 @@ if (isset($_GET['id'])) {
                         if (data.status == 200) {
                             $('.modal').modal('hide');
                             toastr.success(data.message, 'Success');
-                            $('#courses-table').DataTable().ajax.reload(null, false);
+                            $('#blogs-table').DataTable().ajax.reload(null, false);
                         } else {
                             $(':input[type="submit"]').prop('disabled', false);
                             toastr.error(data.message, 'Error');
