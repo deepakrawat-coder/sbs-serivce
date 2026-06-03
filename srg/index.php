@@ -1,108 +1,7 @@
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/pannels/Header-top.php') ?>
-<style>
-    .custom-after-tabs .th-btn.custom-after {
-        padding: 20px !important;
-    }
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Header-top.php') ?>
 
-    .th-btn.style2:hover:before,
-    .th-btn.style2:hover:after {
-        background-color: var(--title-color) !important;
-    }
-
-    .custom-after-tabs .th-btn.custom-after {
-        /* background: var(--title-color) !important; */
-        color: var(--title-color) !important;
-        border: 1px solid var(--title-color) !important;
-        padding: 8px 20px;
-        font-size: 14px;
-        transition: all 0.3s ease;
-    }
-
-    .custom-after-tabs .th-btn.custom-after:hover {
-        background: var(--title-color) !important;
-        color: #fff !important;
-        /* border-color: var(--title-color) !important; */
-    }
-
-    .custom-after-tabs .th-btn.custom-after.active {
-        background: var(--theme-color) !important;
-        color: #fff !important;
-        /* border-color: var(--theme-color) !important; */
-    }
-
-    .custom-after-tabs .th-btn.custom-after.active:hover {
-        background: var(--theme-color) !important;
-        color: #fff !important;
-    }
-
-    .custom-after-tabs {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
-        overflow-x: auto !important;
-        overflow-y: hidden !important;
-        justify-content: flex-start !important;
-        gap: 8px;
-        max-width: 100%;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .custom-after-tabs .th-btn {
-        flex: 0 0 auto !important;
-        white-space: nowrap !important;
-        color: black;
-
-    }
-
-
-    /* ===== BEFORE AFTER TABS ===== */
-    .custom-after-tabs-wrapper {
-        width: 100%;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-    }
-
-    .custom-after-tabs-wrapper::-webkit-scrollbar {
-        display: none;
-    }
-
-    .custom-after-tabs {
-        display: flex;
-        flex-wrap: nowrap;
-        gap: 8px;
-        width: max-content;
-        min-width: 100%;
-        justify-content: center;
-        /* padding: 4px 2px; */
-    }
-
-    .custom-after-tabs .th-btn.custom-after {
-        flex-shrink: 0;
-        white-space: nowrap;
-        background: transparent !important;
-        color: var(--title-color) !important;
-        /* border: 1px solid var(--title-color) !important; */
-        /* padding: 8px 20px !important; */
-        font-size: 14px;
-        transition: background 0.3s ease, color 0.3s ease;
-    }
-
-    .custom-after-tabs .th-btn.custom-after.active {
-        background: var(--theme-color) !important;
-        color: #fff !important;
-        /* border-color: var(--theme-color) !important; */
-    }
-
-    /* Smooth image transition on tab switch */
-    #baAfter,
-    #baBeforeImg {
-        transition: opacity 0.3s ease;
-    }
-</style>
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/pannels/Header-bottom.php') ?>
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/pannels/Menu.php') ?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Header-bottom.php') ?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Menu.php') ?>
 <div class="th-hero-wrapper hero-5 slider-area" id="hero">
     <div
         class="swiper th-slider"
@@ -650,9 +549,10 @@
         </div>
     </div>
 </section> -->
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/parts/srg-services.php') ;
-include($_SERVER['DOCUMENT_ROOT'] . '/parts/srg-why-choose.php');
-include($_SERVER['DOCUMENT_ROOT'] . '/parts/srg-process.php');
+<?php
+include ($_SERVER['DOCUMENT_ROOT'] . '/parts/srg-services.php');
+include ($_SERVER['DOCUMENT_ROOT'] . '/parts/srg-why-choose.php');
+include ($_SERVER['DOCUMENT_ROOT'] . '/parts/srg-process.php');
 ?>
 
 
@@ -952,7 +852,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/parts/srg-process.php');
         </div>
     </div>
 </section>
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/parts/srg-testimonial.php') ?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/parts/srg-testimonial.php') ?>
 <section class="space" id="blog-sec">
     <div class="container">
         <div class="row justify-content-between align-items-center">
@@ -1151,7 +1051,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/parts/srg-process.php');
         </div>
     </div>
 </div>
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/pannels/Footer-top.php'); ?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Footer-top.php'); ?>
 <!-- <script>
     (function() {
         const S = 900,
@@ -1386,4 +1286,4 @@ include($_SERVER['DOCUMENT_ROOT'] . '/parts/srg-process.php');
         load(0);
     })();
 </script>
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/pannels/Footer-bottom.php'); ?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Footer-bottom.php'); ?>

@@ -71,17 +71,21 @@ while ($product = $productQuery->fetch_assoc()) {
     <div class="container-fluid px-lg-5 px-xl-5 px-md-3 px-sm-2">
         <div class="row gy-4">
             <!-- SRG Card - Plumbing & Electrical Services -->
-            <?php foreach ($productData as $products): ?>
+            <?php
+            foreach ($productData as $products):
+                $productUrl = $products['Slug'] . '?id=' . $products['ID'];
+
+                ?>
                 <div class="col-xl-4 col-md-6">
                     <div class="blog-grid">
-                        <a href="/srg/index?url=<?= ($products['Slug']) ?>" class="blog-img">
+                        <a href="<?= $productUrl ?>" class="blog-img">
                             <!-- <img src="assets/img/blog/blog_4_1.jpg" alt="SRG Services"> -->
                         <img src="./admin<?= ($products['Image']) ?>" alt="<?= ($products['Name']) ?>">
 
                         </a>
-                        <a href="/srg/index?url=<?= ($products['Slug']) ?>" class="icon-btn"><i class="far fa-arrow-right"></i></a>
+                        <a href="<?= $productUrl ?>" class="icon-btn"><i class="far fa-arrow-right"></i></a>
                         <div class="blog-content">
-                            <h3 class="box-title"><a href="/srg/index?url=<?= ($products['Slug']) ?>"><?= ($products['Name']) ?></a></h3>
+                            <h3 class="box-title"><a href="<?= $productUrl ?>"><?= ($products['Name']) ?></a></h3>
                             <!-- <p class="box-text">Professional plumbing, electrical wiring, AC repair, water heater fixing,
                                 and home maintenance services 24/7.</p> -->
                                  <p class="box-text mb-0"><?= ($products['Content']) ?></p>
@@ -122,7 +126,7 @@ while ($product = $productQuery->fetch_assoc()) {
     </div>
 </div>
                             </div>
-                            <a href="/srg/index?url=<?= ($products['Slug']) ?>" class="th-btn style4 mt-2">View All Services <i
+                            <a href="<?= $productUrl ?>" class="th-btn style4 mt-2">View All Services <i
                                     class="far fa-arrow-right ms-2"></i></a>
                         </div>
                     </div>

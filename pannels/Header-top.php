@@ -1,3 +1,19 @@
+<?php
+include ($_SERVER['DOCUMENT_ROOT'] . '/admin/includes/conn.php');
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $sql = $conn->query("SELECT Name,ID FROM product WHERE ID= $id");
+    $row = mysqli_fetch_assoc($sql);
+    $_SESSION['Product_ID'] = $row['ID'];
+    $_SESSION['Product_Name'] = $row['Name'];
+}
+// print_r($_SESSION);
+// die;
+
+?>
 <!doctype html>
 <html class="no-js" lang="zxx">
 <!-- Mirrored from html.themehour.net/rakar/demo/home-electrician.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 19 May 2026 09:36:25 GMT -->
@@ -92,9 +108,10 @@
     <link rel="stylesheet" href="/assets/css/magnific-popup.min.css" />
     <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css" />
     <link rel="stylesheet" href="/assets/css/style.css" />
-    <style>
-        
+    <style>        
         .header-layout5 .sticky-wrapper.sticky .header-logo {
             background-color:white !important;
         }
     </style>
+   
+ 

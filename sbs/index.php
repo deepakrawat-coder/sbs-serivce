@@ -1,33 +1,7 @@
-<?php include($_SERVER['DOCUMENT_ROOT'] .'/pannels/Header-top.php') ?>
-<style>
-    .home-electrician {
-        --theme-color: #F47629 !important;
-    }
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Header-top.php') ?>
 
-    :root {
-        --title-color: black !important;
-    }
-
-    /* other css */
-    .form-group>i {
-        color: var(--title-color) !important;
-        background: #F47629 !important;
-    }
-
-    .contact-form2 .form-control,
-    .contact-form2 .form-select {
-        border-color: black !important;
-    }
-
-    .contact-form2 input::placeholder,
-    .contact-form2 select option[value=""][disabled],
-    .contact-form2 select:valid,
-    .contact-form2 textarea::placeholder {
-        color: #c2c2c2ff !important;
-    }
-</style>
-<?php include($_SERVER['DOCUMENT_ROOT'] .'/pannels/Header-bottom.php') ?>
-<?php include($_SERVER['DOCUMENT_ROOT'] .'/pannels/Menu.php') ?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Header-bottom.php') ?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Menu.php') ?>
 
 <div
     class="th-hero-wrapper hero-4 slider-area"
@@ -181,7 +155,7 @@
     </div>
 </div>
 
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/parts/sbs-services.php') ?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/parts/sbs-services.php') ?>
 <!-- Optional: Custom CSS to match your existing card styles -->
 <style>
     .service-card {
@@ -254,8 +228,8 @@
         }
     }
 </style>
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/parts/sbs-why-choose.php');
-include($_SERVER['DOCUMENT_ROOT'] . '/parts/sbs-process.php'); ?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/parts/sbs-why-choose.php');
+include ($_SERVER['DOCUMENT_ROOT'] . '/parts/sbs-process.php'); ?>
 
 <section style="background: var(--theme-color) !important;">
     <div class="contact-area area-shape1" style="background: var(--theme-color) !important;">
@@ -352,7 +326,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/parts/sbs-process.php'); ?>
         </div>
     </div>
 </section>
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/parts/sbs-testimonial.php') ?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/parts/sbs-testimonial.php') ?>
 <section class="space" id="blog-sec" style="background: var(--theme-color) !important;">
     <div class="container">
         <div class="row justify-content-between align-items-center">
@@ -549,5 +523,5 @@ include($_SERVER['DOCUMENT_ROOT'] . '/parts/sbs-process.php'); ?>
         </div>
     </div>
 </div>
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/pannels/Footer-top.php') ?>
-<?php include($_SERVER['DOCUMENT_ROOT'] .'/pannels/Footer-bottom.php') ?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Footer-top.php') ?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Footer-bottom.php') ?>

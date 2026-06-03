@@ -2,7 +2,6 @@
 if (isset($_POST['name']) && isset($_POST['id'])) {
     require '../../includes/conn.php';
     require '../../includes/helper.php';
-    session_start();
 
     $id = intval($_POST['id']);
     $name = mysqli_real_escape_string($conn, $_POST['name']);
@@ -19,8 +18,8 @@ if (isset($_POST['name']) && isset($_POST['id'])) {
         exit;
     }
 
-    if (!empty($_FILES["photo"]["name"])) {
-        $photo = uploadImage($conn, "photo", "banner");
+    if (!empty($_FILES['photo']['name'])) {
+        $photo = uploadImage($conn, 'photo', 'banner');
     } else {
         $photo = $updated_file;
     }

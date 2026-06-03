@@ -1,18 +1,30 @@
 RewriteEngine On
 RewriteBase /
 
-# ==============================
-# REMOVE .PHP EXTENSION
-# ==============================
+# =====================================
+# Redirect old URL
+# /sbs.php?id=6 OR /sbs?id=6
+# -> /sbs/6
+# =====================================
+RewriteCond %{QUERY_STRING} ^id=([0-9]+)$ [NC]
+RewriteRule ^sbs(?:\.php)?$ /sbs/%1? [R=301,L]
 
-# If request is not file/folder
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
+# =====================================
+# Internal Rewrite
+# /sbs/6 -> sbs.php?id=6
+# =====================================
+RewriteRule ^sbs/([0-9]+)/?$ sbs.php?id=$1 [L,QSA]
 
-# Check .php file exists
-RewriteCond %{DOCUMENT_ROOT}/$1.php -f
-RewriteRule ^(.+)$ $1.php [L]
-
-# Redirect .php URL to clean URL
+# =====================================
+# Remove .php extension
+# =====================================
 RewriteCond %{THE_REQUEST} \s/+(.+?)\.php[\s?] [NC]
 RewriteRule ^(.+)\.php$ /$1 [R=301,L]
+
+# =====================================
+# Clean URL -> PHP
+# =====================================
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.+)$ $1.php [L]

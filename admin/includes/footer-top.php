@@ -104,7 +104,7 @@
    function add(url, modal) {
      // alert(model);
      $.ajax({
-       url: '/admin/app/' + url + '/create.php',
+       url: '/admin/app/' + url + '/create',
        type: 'GET',
        success: function(data) {
          $('#' + modal + '-modal-content').html(data);
@@ -118,7 +118,7 @@
    function edit(url, id, modal) {
 
      $.ajax({
-       url: '/admin/app/' + url + '/edit.php?id=' + id,
+       url: '/admin/app/' + url + '/edit?id=' + id,
        type: 'GET',
        success: function(data) {
          $('#' + modal + '-modal-content').html(data);
@@ -142,7 +142,7 @@
      }).then((result) => {
        if (result.isConfirmed) {
          $.ajax({
-           url: "/admin/app/" + url + "/destroy.php?id=" + id,
+           url: "/admin/app/" + url + "/destroy?id=" + id,
            type: 'DELETE',
            dataType: 'json',
            success: function(data) {
@@ -161,7 +161,7 @@
  <script type="text/javascript">
    function changeStatus(table, id, column = null) {
      $.ajax({
-       url: '/admin/app/status/update.php',
+       url: '/admin/app/status/update',
        type: 'post',
        data: {
          table,
