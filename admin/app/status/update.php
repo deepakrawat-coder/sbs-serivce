@@ -1,14 +1,11 @@
 <?php
 if (isset($_POST['table']) && isset($_POST['id'])) {
   require '../../includes/conn.php';
-    
-  
-  session_start();
 
   $table = mysqli_real_escape_string($conn, $_POST['table']);
   $table = str_replace('-', '_', $table);
 
-  $column = "Status";
+  $column = 'Status';
   if (isset($_POST['column']) && !empty($_POST['column'])) {
     $column = $_POST['column'];
   }
@@ -16,7 +13,6 @@ if (isset($_POST['table']) && isset($_POST['id'])) {
   //   print_r($column);
   //   echo "</pre>";
   //   exit();
-    
 
   if ($table == 'Students') {
     $id = mysqli_real_escape_string($conn, $_POST['id']);

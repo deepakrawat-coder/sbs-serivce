@@ -83,3 +83,4 @@
         </div>
     </div>
 </header>
+ <?php include ($_SERVER['DOCUMENT_ROOT'] . '/parts/theme-page.php'); ?>

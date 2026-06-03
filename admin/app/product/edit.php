@@ -20,7 +20,7 @@ if (isset($_GET['id'])) {
 </div>
 <div class="card-body">
   <div class="form-validation">
-    <form class="needs-validation" role="form" id="form-add-blogs" action="/admin/app/product/update.php" method="POST" enctype="multipart/form-data">
+    <form class="needs-validation" role="form" id="form-add-blogs" action="/admin/app/product/update" method="POST" enctype="multipart/form-data">
       <input type="hidden" name="id" value="<?= $productArr['ID'] ?>">
       <div class="row">
 

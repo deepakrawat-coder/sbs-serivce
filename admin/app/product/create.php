@@ -8,7 +8,7 @@ require '../../includes/helper.php'; ?>
 </div>
 <div class="card-body">
   <div class="form-validation">
-    <form class="needs-validation" role="form" id="form-add-blogs" action="/admin/app/product/store.php" method="POST"
+    <form class="needs-validation" role="form" id="form-add-blogs" action="/admin/app/product/store" method="POST"
       enctype="multipart/form-data">
       <div class="row">
 

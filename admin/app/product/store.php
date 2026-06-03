@@ -3,20 +3,19 @@
 if (isset($_POST['name'])) {
     require '../../includes/conn.php';
     require '../../includes/helper.php';
-    session_start();
 
     $name = mysqli_real_escape_string($conn, $_POST['name']);
-      $slug = baseurl($name); 
+    $slug = baseurl($name);
     $services = mysqli_real_escape_string($conn, $_POST['services']);
     $content = mysqli_real_escape_string($conn, $_POST['content']);
     //   $meta_title =mysqli_real_escape_string($conn, $_POST['meta_title']);
-//   $meta_key =mysqli_real_escape_string($conn, $_POST['meta_key']);
-//   $meta_description =mysqli_real_escape_string($conn, $_POST['meta_description']);
+    //   $meta_key =mysqli_real_escape_string($conn, $_POST['meta_key']);
+    //   $meta_description =mysqli_real_escape_string($conn, $_POST['meta_description']);
 
-    if ($_FILES["photo"]["name"]) {
-        $filename = uploadImage($conn, "photo", "product");
+    if ($_FILES['photo']['name']) {
+        $filename = uploadImage($conn, 'photo', 'product');
     } else {
-        $filename = "/admin-assets/img/default-program.jpg";
+        $filename = '/admin-assets/img/default-program.jpg';
     }
 
     if (empty($name)) {

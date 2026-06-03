@@ -1,47 +1,7 @@
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/pannels/Header-top.php') ?>
-<style>
-    .home-electrician {
-        --theme-color: #127a3a !important;
-    }
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Header-top.php') ?>
 
-    :root {
-        --title-color: black !important;
-    }
-
-    /* other css */
-    .form-group>i {
-        color: var(--title-color) !important;
-        background: #127a3a !important;
-    }
-
-    .contact-form2 .form-control,
-    .contact-form2 .form-select {
-        border-color: black !important;
-    }
-
-    .contact-form2 input::placeholder,
-    .contact-form2 select option[value=""][disabled],
-    .contact-form2 select:valid,
-    .contact-form2 textarea::placeholder {
-        color: #c2c2c2ff !important;
-    }
-
-    .contact-process .box-number,
-    .process-item_icon .number {
-
-        background-color: rgb(41 244 120 / 20%);
-    }
-
-    .lord-krishna {
-        background-color: #000000 !important;
-    }
-
-    .accordion-card.style3 {
-        background: #127a3a;
-    }
-</style>
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/pannels/Header-bottom.php') ?>
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/pannels/Menu.php') ?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Header-bottom.php') ?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Menu.php') ?>
 <div class="th-hero-wrapper hero-2 slider-area" id="hero" data-bg-src="../assets/img/hero/hero_bg_2.jpg">
     <div class="swiper th-slider" id="heroSlide2" data-slider-options='{"effect":"fade","autoHeight":true}'>
         <div class="swiper-wrapper">
@@ -146,7 +106,7 @@
     </div>
 </div>
 
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/parts/lord-krishna-services.php') ?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/parts/lord-krishna-services.php') ?>
 <!-- <div class="choose-area overflow-hidden space background-image" style="background-image: url('../assets/img/bg/choose_bg_1.png');">
     <div class="container">
         <div class="row justify-content-end">
@@ -183,8 +143,8 @@
         </div>
     </div>
 </div> -->
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/parts/lord-krishna-why-choose.php') ?>
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/parts/lord-krishna-process.php') ?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/parts/lord-krishna-why-choose.php') ?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/parts/lord-krishna-process.php') ?>
 <div class="overflow-hidden bg-white shape-mockup-wrap" id="contact-sec">
     <div class="shape-mockup moving d-none d-xxl-block" style="right: 0%; bottom: 0%;">
         <img src="../assets/img/shape/man_shape_1.png" alt="shape">
@@ -285,7 +245,7 @@
     </div>
 </div>
 
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/parts/lord-krishna-testimonial.php') ?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/parts/lord-krishna-testimonial.php') ?>
 <section class="space" id="blog-sec">
     <div class="container">
         <div class="row justify-content-between align-items-center">
@@ -452,5 +412,5 @@
         </div>
     </div>
 </div>
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/pannels/Footer-top.php') ?>
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/pannels/Footer-bottom.php') ?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Footer-top.php') ?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Footer-bottom.php') ?>

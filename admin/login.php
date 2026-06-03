@@ -57,7 +57,7 @@
                         <div class="tab-content w-100" id="nav-tabContent">
                           <div class="tab-pane fade show active" id="nav-personal" role="tabpanel"
                             aria-labelledby="nav-personal-tab">
-                            <form id="form-login" role="form" autocomplete="off" action="app/login/login_store.php"
+                            <form id="form-login" role="form" autocomplete="off" action="app/login/login_store"
                               class=" dz-form pb-3">
                               <h3 class="form-title m-t0">Personal Information</h3>
                               <div class="dz-separator-outer m-b5">

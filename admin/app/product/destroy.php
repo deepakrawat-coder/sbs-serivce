@@ -1,7 +1,6 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'DELETE' && isset($_GET['id'])) {
   require '../../includes/conn.php';
-  session_start();
 
   $id = mysqli_real_escape_string($conn, $_GET['id']);
 
