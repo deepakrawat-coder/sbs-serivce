@@ -14,10 +14,10 @@ if (isset($_GET['id'])) {
 </div>
 <div class="card-body">
     <div class="form-validation">
-        <form class="needs-validation" role="form" id="form-add-stream" action="/admin/app/banner/update.php" method="POST"
+        <form class="needs-validation" role="form" id="form-add-stream" action="/admin/app/banner/update" method="POST"
             enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?= $getdata['ID'] ?>">
-
+            <input type="hidden" name="updated_file" value="<?= $getdata['Image'] ?>">
             <div class="row">
                 <div class="mb-3 col-md-6">
                     <label class="form-label">ProductName<span class="text-danger">*</span></label>
@@ -40,20 +40,10 @@ if (isset($_GET['id'])) {
                         placeholder="Enter a Banner Name.." required>
                 </div>
 
-                <div class="mb-3 col-md-6">
-                    <label class="form-label">Photo <span class="text-danger">*</span></label>
-                    <input type="hidden" name="updated_file" value="<?= $getdata['Image'] ?>">
-                    <input type="file" name="photo" id="photo" class="form-control" onchange="fileValidation('photo')"
-                        accept="image/png, image/jpg, image/jpeg, image/svg, image/avif">
-                    <?php if (!empty($id) && !empty($getdata['Image'])) { ?>
-                        <img src="/admin<?php echo !empty($id) ? $getdata['Image'] : ''; ?>" height="50" />
-                    <?php } ?>
-                </div>
 
-                  <div class="mb-3 col-md-6">
+                <div class="mb-3 col-md-6">
                     <label class="form-label">Title <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="title" value="<?= $getdata['Title'] ?>"
-                         required>
+                    <input type="text" class="form-control" name="title" value="<?= $getdata['Title'] ?>" required>
                 </div>
 
 
@@ -63,25 +53,61 @@ if (isset($_GET['id'])) {
                         rows="10"><?= $getdata['Content'] ?></textarea>
                 </div>
 
-                <!-- <hr>
-                <h3>SEO</h3>
-                <div class="mb-3 col-md-6">
-                    <label class="form-label">Meta Title
-                    </label>
-                    <input type="text" class="form-control" name="meta_title" value="<?= $getdata['Meta_Title'] ?>"
-                        placeholder="Enter a Meta Title..">
+
+                <div class="col-md-12">
+                    <label class="form-label">Images</label>
+
+                    <!-- Existing Images -->
+                    <div class="row mb-3">
+
+                        <?php
+                        $images = explode(',', $getdata['Image']);
+
+                        foreach ($images as $img) {
+                            $img = trim($img);
+
+                            if (!empty($img)) {
+                                ?>
+                                <div class="col-md-3 text-center mb-3">
+                                    <img src="/admin-assets/img/banner/<?= $img ?>" class="img-fluid border rounded mb-2"
+                                        style="height:120px;width:100%;object-fit:cover;">
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="delete_images[]"
+                                            value="<?= $img ?>">
+
+                                        <label class="form-check-label">
+                                            Delete Image
+                                        </label>
+                                    </div>
+                                </div>
+                                <?php
+                            }
+                        }
+                        ?>
+
+                    </div>
+
+                    <!-- New Images Upload -->
+                    <div id="imageContainer">
+                        <div class="image-box row mb-2">
+                            <div class="col-md-10">
+                                <input type="file" class="form-control" name="photo[]"
+                                    accept="image/png,image/jpg,image/jpeg,image/svg+xml,image/avif">
+                            </div>
+
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-danger" onclick="removeImage(this)">
+                                    Remove
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-success mt-2" id="addImage">
+                        Add More Image
+                    </button>
                 </div>
-                <div class="mb-3 col-md-6">
-                    <label class="form-label">Meta Key
-                    </label>
-                    <input type="text" class="form-control" name="meta_key" value="<?= $getdata['Meta_Key'] ?>"
-                        placeholder="Enter a Meta Key..">
-                </div>
-                <div class="mb-3 col-md-12">
-                    <label class="form-label">Meta Description</label>
-                    <textarea cols="2" class="form-control" name="meta_description"
-                        placeholder="Enter a Meta Description.."><?= $getdata['Meta_Description'] ?></textarea>
-                </div> -->
 
                 <div class="modal-footer clearfix text-end">
                     <div class="col-md-4 m-t-10 sm-m-t-10">
@@ -93,6 +119,36 @@ if (isset($_GET['id'])) {
         </form>
     </div>
 </div>
+
+
+<script>
+    $('#addImage').click(function () {
+
+        $('#imageContainer').append(`
+        <div class="image-box row mb-2">
+            <div class="col-md-10">
+                <input type="file"
+                    class="form-control"
+                    name="photo[]"
+                    accept="image/png,image/jpg,image/jpeg,image/svg+xml,image/avif">
+            </div>
+
+            <div class="col-md-2">
+                <button type="button"
+                    class="btn btn-danger"
+                    onclick="removeImage(this)">
+                    Remove
+                </button>
+            </div>
+        </div>
+    `);
+
+    });
+
+    function removeImage(btn) {
+        $(btn).closest('.image-box').remove();
+    }
+</script>
 
 <script>
     $(document).ready(function () {
@@ -142,7 +198,7 @@ if (isset($_GET['id'])) {
                         if (data.status == 200) {
                             $('.modal').modal('hide');
                             toastr.success(data.message, 'Success');
-                            $('#courses-table').DataTable().ajax.reload(null, false);
+                            $('#blogs-table').DataTable().ajax.reload(null, false);
                         } else {
                             $(':input[type="submit"]').prop('disabled', false);
                             toastr.error(data.message, 'Error');

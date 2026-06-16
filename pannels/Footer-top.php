@@ -1,3 +1,16 @@
+ 
+ <?php require('../admin/includes/conn.php'); ?>
+
+<?php
+
+$productId = isset($_GET['id']) ? intval($_GET['id']) : 0;
+ 
+ $contactQuery = $conn->query("SELECT *  FROM contact  WHERE Product_id = $productId AND Status = 1 ORDER BY ID DESC LIMIT 1");
+$contactData = $contactQuery->fetch_assoc();
+
+?>
+ 
+ 
  <footer
      class="footer-wrapper footer-layout5"
      data-bg-src="/assets/img/bg/footer_bg_5.png">
@@ -8,7 +21,8 @@
                      <div class="box-icon"><i class="fas fa-location-dot"></i></div>
                      <div class="media-body">
                          <p class="box-text text-white">
-                             789 Inner Lane, Holy park, California, USA
+                             <!-- 789 Inner Lane, Holy park, California, USA -->
+                              <?=($contactData['Address']) ?>
                          </p>
                      </div>
                  </div>
@@ -18,7 +32,7 @@
                      <div class="media-body">
                          <h3 class="box-title text-white">Call Us:</h3>
                          <p class="box-text text-white">
-                             <a href="tel:+09876543210">+09 876 543 210</a>
+                             <a href="tel:+09876543210"><?=($contactData['Phone']) ?></a>
                          </p>
                      </div>
                  </div>
@@ -28,7 +42,7 @@
                      <div class="media-body">
                          <h3 class="box-title text-white">Email Us:</h3>
                          <p class="box-text text-white">
-                             <a href="mailto:support24@rakar.com">support24@rakar.com</a>
+                             <a href="mailto:support24@rakar.com"><?=($contactData['Email']) ?></a>
                          </p>
                      </div>
                  </div>

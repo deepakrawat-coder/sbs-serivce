@@ -7,8 +7,8 @@ require '../../includes/helper.php'; ?>
 </div>
 <div class="card-body">
     <div class="form-validation">
-        <form class="needs-validation" role="form" id="form-add-stream" action="/admin/app/banner/store.php"
-            method="POST" enctype="multipart/form-data">
+        <form class="needs-validation" role="form" id="form-add-stream" action="/admin/app/banner/store" method="POST"
+            enctype="multipart/form-data">
             <div class="row">
                 <div class="mb-3 col-md-6">
                     <label class="form-label">ProductName<span class="text-danger">*</span></label>
@@ -28,17 +28,13 @@ require '../../includes/helper.php'; ?>
                     <input type="text" class="form-control" name="name" placeholder="Enter a Banner Name.." required>
                 </div>
 
-                <div class="mb-3 col-md-6">
+                <!-- <div class="mb-3 col-md-6">
                     <label class="form-label">Photo <span class="text-danger">*</span></label>
                     <input type="file" class="form-control" name="photo"
                         accept="image/png, image/jpg, image/jpeg, image/svg, image/avif" required>
-                </div>
-
-                <!-- <div class="mb-3 col-md-6">
-                    <label class="form-label">Photo <span class="text-danger">*</span></label>
-                    <input type="file" class="form-control" name="photo[]"
-                        accept="image/png, image/jpg, image/jpeg, image/svg, image/avif" multiple required>
                 </div> -->
+
+
 
                 <div class="mb-3 col-md-6">
                     <label class="form-label">Title<span class="text-danger">*</span></label>
@@ -52,32 +48,25 @@ require '../../includes/helper.php'; ?>
                 </div>
 
 
-                <!-- <hr>
-                <h3>SEO</h3>
+                <div class="col-md-12">
+                    <label class="form-label">Images <span class="text-danger">*</span></label>
 
+                    <div id="imageContainer">
+                        <div class="image-box row mb-2">
+                            <div class="col-md-10">
+                                <input type="file" class="form-control" name="photo[]"
+                                    accept="image/png,image/jpg,image/jpeg,image/svg+xml,image/avif" required>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-danger" onclick="removeImage(this)">Remove</button>
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="mb-3 col-md-6">
-                    <label class="form-label">Meta Title
-                    </label>
-                    <input type="text" class="form-control" name="meta_title" placeholder="Enter a Meta Title..">
+                    <button type="button" class="btn btn-success mt-2" id="addImage">
+                        Add More Image
+                    </button>
                 </div>
-                <div class="mb-3 col-md-6">
-                    <label class="form-label">Meta Key
-                    </label>
-                    <input type="text" class="form-control" name="meta_key" placeholder="Enter a Meta Key..">
-                </div>
-                <div class="mb-3 col-md-12">
-                    <label class="form-label">Meta Description</label>
-                    <textarea cols="2" class="form-control" name="meta_description"
-                        placeholder="Enter a Meta Description.."></textarea>
-                </div> -->
-
-                <!-- <div class="mb-3 col-md-12">
-                    <label class="form-label">Order By <span class="text-danger">*</span></label>
-                    <input type="number" min="0" class="form-control" name="position" placeholder="Enter a Position.."
-                        required>
-                </div> -->
-
                 <div class="modal-footer clearfix text-end">
                     <div class="col-md-4 m-t-10 sm-m-t-10">
                         <button aria-label="" type="submit" class="btn btn-primary btn-cons btn-animated from-left">
@@ -90,6 +79,34 @@ require '../../includes/helper.php'; ?>
 </div>
 
 
+
+
+<script>
+    $('#addImage').click(function () {
+
+        let html = `
+        <div class="image-box row mb-2">
+            <div class="col-md-10">
+                <input type="file" class="form-control" name="photo[]"
+                    accept="image/png,image/jpg,image/jpeg,image/svg+xml,image/avif" required>
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-danger"
+                    onclick="removeImage(this)">Remove</button>
+            </div>
+        </div>`;
+
+        $('#imageContainer').append(html);
+    });
+
+    function removeImage(btn) {
+        if ($('.image-box').length > 1) {
+            $(btn).closest('.image-box').remove();
+        } else {
+            toastr.error('At least one image is required.');
+        }
+    }
+</script>
 
 <script>
     $(document).ready(function () {
@@ -139,7 +156,7 @@ require '../../includes/helper.php'; ?>
                         if (data.status == 200) {
                             $('.modal').modal('hide');
                             toastr.success(data.message, 'Success');
-                            $('#courses-table').DataTable().ajax.reload(null, false);
+                            $('#blogs-table').DataTable().ajax.reload(null, false);
                         } else {
                             $(':input[type="submit"]').prop('disabled', false);
                             toastr.error(data.message, 'Error');

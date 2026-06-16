@@ -1,6 +1,6 @@
-<?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Header-top.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . '/pannels/Header-top.php'); ?>
 
-<?php require ('admin/includes/conn.php'); ?>
+<?php require('admin/includes/conn.php'); ?>
 
 <?php
 
@@ -62,11 +62,12 @@ while ($product = $productQuery->fetch_assoc()) {
 
         box-shadow: inset 30px 30px 0 0 #000000 !important;
     }
-    p{
-        margin-bottom: 0!important
+
+    p {
+        margin-bottom: 0 !important
     }
 </style>
-<?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Header-bottom.php') ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . '/pannels/Header-bottom.php') ?>
 <section class="main-home-alignment" style="background:black;">
     <div class="container-fluid px-lg-5 px-xl-5 px-md-3 px-sm-2">
         <div class="row gy-4">
@@ -80,7 +81,7 @@ while ($product = $productQuery->fetch_assoc()) {
                     <div class="blog-grid">
                         <a href="<?= $productUrl ?>" class="blog-img">
                             <!-- <img src="assets/img/blog/blog_4_1.jpg" alt="SRG Services"> -->
-                        <img src="./admin<?= ($products['Image']) ?>" alt="<?= ($products['Name']) ?>">
+                            <img src="./admin<?= ($products['Image']) ?>" alt="<?= ($products['Name']) ?>">
 
                         </a>
                         <a href="<?= $productUrl ?>" class="icon-btn"><i class="far fa-arrow-right"></i></a>
@@ -88,43 +89,43 @@ while ($product = $productQuery->fetch_assoc()) {
                             <h3 class="box-title"><a href="<?= $productUrl ?>"><?= ($products['Name']) ?></a></h3>
                             <!-- <p class="box-text">Professional plumbing, electrical wiring, AC repair, water heater fixing,
                                 and home maintenance services 24/7.</p> -->
-                                 <p class="box-text mb-0"><?= ($products['Content']) ?></p>
+                            <p class="box-text mb-0"><?= ($products['Content']) ?></p>
                             <div class="service-list">
-                               <div class="row">
-    <?php
-    $servicekey = array_map('trim', explode(',', $products['Services']));
+                                <div class="row">
+                                    <?php
+                                    $servicekey = array_map('trim', explode(',', $products['Services']));
 
-    // Split array into 2 equal parts
-    $half = ceil(count($servicekey) / 2);
+                                    // Split array into 2 equal parts
+                                    $half = ceil(count($servicekey) / 2);
 
-    $firstColumn = array_slice($servicekey, 0, $half);
-    $secondColumn = array_slice($servicekey, $half);
-    ?>
+                                    $firstColumn = array_slice($servicekey, 0, $half);
+                                    $secondColumn = array_slice($servicekey, $half);
+                                    ?>
 
-    <!-- First Column -->
-    <div class="col-12 col-md-6">
-        <ul>
-            <?php foreach ($firstColumn as $value) { ?>
-                <li>
-                    <i class="fas fa-check-circle"></i>
-                    <?= $value ?>
-                </li>
-            <?php } ?>
-        </ul>
-    </div>
+                                    <!-- First Column -->
+                                    <div class="col-12 col-md-6">
+                                        <ul>
+                                            <?php foreach ($firstColumn as $value) { ?>
+                                                <li>
+                                                    <i class="fas fa-check-circle"></i>
+                                                    <?= $value ?>
+                                                </li>
+                                            <?php } ?>
+                                        </ul>
+                                    </div>
 
-    <!-- Second Column -->
-    <div class="col-12 col-md-6">
-        <ul>
-            <?php foreach ($secondColumn as $value) { ?>
-                <li>
-                    <i class="fas fa-check-circle"></i>
-                    <?= $value ?>
-                </li>
-            <?php } ?>
-        </ul>
-    </div>
-</div>
+                                    <!-- Second Column -->
+                                    <div class="col-12 col-md-6">
+                                        <ul>
+                                            <?php foreach ($secondColumn as $value) { ?>
+                                                <li>
+                                                    <i class="fas fa-check-circle"></i>
+                                                    <?= $value ?>
+                                                </li>
+                                            <?php } ?>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                             <a href="<?= $productUrl ?>" class="th-btn style4 mt-2">View All Services <i
                                     class="far fa-arrow-right ms-2"></i></a>
@@ -209,4 +210,4 @@ while ($product = $productQuery->fetch_assoc()) {
 <script src="/assets/js/imagesloaded.pkgd.min.js"></script>
 <script src="/assets/js/isotope.pkgd.min.js"></script>
 <script src="/assets/js/main.js"></script>
-<?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Footer-bottom.php') ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . '/pannels/Footer-bottom.php') ?>

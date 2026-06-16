@@ -7,7 +7,7 @@ require '../../includes/helper.php'; ?>
 </div>
 <div class="card-body">
     <div class="form-validation">
-        <form class="needs-validation" role="form" id="form-add-stream" action="/admin/app/about_us/store.php"
+        <form class="needs-validation" role="form" id="form-add-stream" action="/admin/app/about_us/store"
             method="POST" enctype="multipart/form-data">
             <div class="row">
                 <div class="mb-3 col-md-6">
@@ -51,12 +51,7 @@ require '../../includes/helper.php'; ?>
                         onkeypress="return onlyNumberKey(event)" maxlength="10" minlength="10"
                         requiredplaceholder="Enter a phone.." required>
                 </div>
-                <!-- <div class="mb-3 col-md-6">
-                    <label class="form-label">Title<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="title" placeholder="Enter a Title.." required>
-                </div> -->
-
-
+               
                 <div class="mb-3 col-md-12">
                     <label class="form-label">Content <span class="text-danger">*</span></label>
                     <textarea class="ckeditor" cols="80" id="editor" name="content" rows="10"></textarea>
@@ -150,7 +145,7 @@ require '../../includes/helper.php'; ?>
                         if (data.status == 200) {
                             $('.modal').modal('hide');
                             toastr.success(data.message, 'Success');
-                            $('#courses-table').DataTable().ajax.reload(null, false);
+                            $('#blogs-table').DataTable().ajax.reload(null, false);
                         } else {
                             $(':input[type="submit"]').prop('disabled', false);
                             toastr.error(data.message, 'Error');

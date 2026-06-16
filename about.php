@@ -63,7 +63,7 @@
     </div>
 </div>
 <?php
-$service = '2';
+$service = '3';
 if ($service == '1') {
     include($_SERVER['DOCUMENT_ROOT'] . '/parts/lord-krishna-services.php');
     include($_SERVER['DOCUMENT_ROOT'] . '/parts/lord-krishna-why-choose.php');

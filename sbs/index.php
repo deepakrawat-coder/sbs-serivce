@@ -401,7 +401,8 @@ include ($_SERVER['DOCUMENT_ROOT'] . '/parts/sbs-process.php'); ?>
                             </div>
                             <div class="media-body">
                                 <p class="box-text">
-                                    789 Inner Lane, Holy park, California, USA
+                                    <!-- 789 Inner Lane, Holy park, California, USA -->
+                                     <?=($contactData['Address']) ?>
                                 </p>
                             </div>
                         </div>
@@ -415,7 +416,7 @@ include ($_SERVER['DOCUMENT_ROOT'] . '/parts/sbs-process.php'); ?>
                             <div class="media-body">
                                 <h4 class="box-label">Call Us:</h4>
                                 <p class="box-text">
-                                    <a href="tel:+09876543210">+09 876 543 210</a>
+                                    <a href="tel:+09876543210"> <?=($contactData['Phone']) ?></a>
                                 </p>
                             </div>
                         </div>
@@ -424,7 +425,7 @@ include ($_SERVER['DOCUMENT_ROOT'] . '/parts/sbs-process.php'); ?>
                             <div class="media-body">
                                 <h4 class="box-label">Email Us:</h4>
                                 <p class="box-text">
-                                    <a href="mailto:support24@rakar.com">support24@rakar.com</a>
+                                    <a href="mailto:support24@rakar.com"> <?=($contactData['Email']) ?></a>
                                 </p>
                             </div>
                         </div>
@@ -483,7 +484,7 @@ include ($_SERVER['DOCUMENT_ROOT'] . '/parts/sbs-process.php'); ?>
         </div>
     </div>
 </section>
-<?php include ($_SERVER['DOCUMENT_ROOT'] . '/parts/sbs-testimonial.php') ?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/parts/sbs-feedback.php') ?>
 <section class="space" id="blog-sec" style="background: var(--theme-color) !important;">
     <div class="container">
         <div class="row justify-content-between align-items-center">
