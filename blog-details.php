@@ -1,4 +1,4 @@
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/pannels/Header-top.php') ?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Header-top.php') ?>
 <style>
     /* Same CSS as above plus blog-specific styles */
     .blog-details-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid #eee; }
@@ -20,17 +20,48 @@
     .comment-form input, .comment-form textarea { width: 100%; padding: 14px 20px; border: 1px solid #eee; border-radius: 12px; margin-bottom: 15px; transition: all 0.2s ease; }
     .comment-form input:focus, .comment-form textarea:focus { outline: none; border-color: var(--theme-color); box-shadow: 0 0 0 2px rgba(244,180,26,0.1); }
 </style>
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/pannels/Header-bottom.php') ?>
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/pannels/Menu.php') ?>
+<?php
+// Ensure slug is provided
+$slug = isset($_GET['slug']) ? $_GET['slug'] : '';
+
+if (empty($slug)) {
+    // Handle missing slug gracefully - redirect or show error
+    echo "<div class='container'><div class='alert alert-danger'>Invalid blog post.</div></div>";
+    include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Footer-top.php');
+    include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Footer-bottom.php');
+    exit;
+}
+
+// Get main blog details - FIXED variable name conflict
+$blogDetailsQuery = $conn->query("SELECT blogs.*, product.name as product_name FROM blogs LEFT JOIN product ON blogs.Product_ID = product.ID WHERE blogs.slug = '$slug' AND blogs.status = '1'");
+if (!$blogDetailsQuery || $blogDetailsQuery->num_rows == 0) {
+    echo "<div class='container'><div class='alert alert-danger'>Blog post not found.</div></div>";
+    include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Footer-top.php');
+    include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Footer-bottom.php');
+    exit;
+}
+$blogRow = $blogDetailsQuery->fetch_assoc();
+$faq = json_decode($blogRow['faq'], true);
+$id = $blogRow['ID'];
+
+// Get recent posts - FIXED variable name to not conflict
+$recentQuery = $conn->query("SELECT * FROM blogs WHERE Status='1' AND ID!='$id' ORDER BY rand() LIMIT 4");
+$recentBlog = [];
+while ($recentRow = $recentQuery->fetch_assoc()) {
+    $recentBlog[] = $recentRow;
+}
+?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Header-bottom.php') ?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Menu.php') ?>
 
 <div class="breadcumb-wrapper background-image">
     <div class="container">
         <div class="breadcumb-content">
-            <h1 class="breadcumb-title">Blog Details</h1>
+            <h1 class="breadcumb-title"><?= htmlspecialchars($blogRow['title']) ?></h1>
             <ul class="breadcumb-menu">
                 <li><a href="/">Home</a></li>
                 <li><a href="javascript:void(0)">Blog</a></li>
-                <li>Blog Details</li>
+                <li><?= htmlspecialchars($blogRow['title']) ?></li>
             </ul>
         </div>
     </div>
@@ -41,96 +72,76 @@
         <div class="row">
             <div class="col-xxl-8 col-lg-7">
                 <div class="page-single mb-30">
-                    <div class="page-img"><img src="../assets/img/service/service_details.jpg" alt="Blog Image"></div>
+                    <div class="page-img"><img src="<?= htmlspecialchars($blogRow['image']) ?>" alt="Blog Image"></div>
                     <div class="page-content">
                         <div class="blog-details-meta">
-                            <span><i class="fas fa-user"></i> By <a href="javascript:void(0)">SRG Team</a></span>
-                            <span><i class="fas fa-calendar"></i> 15 January, 2025</span>
-                            <span><i class="fas fa-tag"></i> <a href="javascript:void(0)">Plumbing</a></span>
-                            <span><i class="fas fa-comment"></i> 3 Comments</span>
+                            <span><i class="fas fa-user"></i> By <a href="javascript:void(0)"><?= htmlspecialchars($blogRow['product_name']) ?></a></span>
+                            <span><i class="fas fa-calendar"></i> <?= date('d M, Y', strtotime($blogRow['Created_At'])) ?></span>                            
                         </div>
-                        <h2 class="h3 sec-title page-title">5 Signs You Need to Call a Plumber Immediately</h2>
-                        <p>Plumbing issues can quickly escalate from minor annoyances to major disasters. Knowing when to call a professional can save you thousands in water damage repair costs. Here are five critical signs that you need to call a plumber right away.</p>
-                        
-                        <h4 class="mt-4 mb-3">1. Low Water Pressure Throughout Your Home</h4>
-                        <p>If you notice weak water flow from multiple faucets simultaneously, it could indicate a hidden leak or pipe blockage. This often points to a serious issue like corroded pipes or a main line break that requires immediate professional attention.</p>
-                        
-                        <h4 class="mt-4 mb-3">2. Persistent Dripping Sounds</h4>
-                        <p>Hearing water running when all faucets are off is a clear warning sign. A hidden leak behind walls or under floors can cause structural damage, mold growth, and significantly higher water bills.</p>
-                        
-                        <div class="blog-quote">
-                            <i class="fas fa-quote-left" style="color: var(--theme-color); margin-right: 15px;"></i>
-                            Don't ignore small leaks — a dripping faucet can waste over 3,000 gallons of water per year!
-                        </div>
-                        
-                        <h4 class="mt-4 mb-3">3. Sewage Odor</h4>
-                        <p>A foul smell resembling rotten eggs indicates a sewer line issue. This could be a cracked pipe, clogged vent, or dried-out P-trap. Sewage gases are hazardous to your health and require emergency plumbing services.</p>
-                        
-                        <h4 class="mt-4 mb-3">4. Water Stains on Walls or Ceilings</h4>
-                        <p>Yellowish-brown discoloration, bubbling paint, or peeling wallpaper are signs of moisture behind surfaces. These indicate a leaking pipe that needs immediate repair to prevent structural damage and mold.</p>
-                        
-                        <h4 class="mt-4 mb-3">5. Sudden Increase in Water Bills</h4>
-                        <p>If your water usage hasn't changed but your bill has spiked, you likely have an undetected leak. A professional plumber can locate and fix the issue before it costs you more money.</p>
-                        
-                        <div class="blog-tags">
-                            <strong>Tags:</strong>
-                            <a href="javascript:void(0)">Plumbing Tips</a>
-                            <a href="javascript:void(0)">Home Maintenance</a>
-                            <a href="javascript:void(0)">Emergency Plumbing</a>
-                            <a href="javascript:void(0)">DIY vs Professional</a>
-                        </div>
-
-                        
+                        <h2 class="h3 sec-title page-title" style="text-transform: capitalize;"><?= htmlspecialchars($blogRow['title']) ?></h2>
+                        <div style="text-align: justify;"><?= $blogRow['content'] ?></div>                  
                     </div>
                 </div>
+                <?php if (!empty($faq) && isset($faq)) { ?>
+                <h4 class="mt-40 mb-4">Some FAQ About This Service</h4>
+                <div class="accordion mt-40" id="faqAccordion">
+                    <?php
+                    $faqCount = 1;
+                    foreach ($faq as $item):
+                        $uniqueId = 'collapse-' . $faqCount;
+                        $headerId = 'collapse-item-' . $faqCount;
+                        $isFirst = ($faqCount === 1);
+                        ?>
+                        <div class="accordion-card">
+                            <div class="accordion-header" id="<?php echo $headerId; ?>">
+                                <button class="accordion-button <?php echo $isFirst ? '' : 'collapsed'; ?>" 
+                                        type="button" 
+                                        data-bs-toggle="collapse" 
+                                        data-bs-target="#<?php echo $uniqueId; ?>" 
+                                        aria-expanded="<?php echo $isFirst ? 'true' : 'false'; ?>" 
+                                        aria-controls="<?php echo $uniqueId; ?>">
+                                  <?= 'Q' . $faqCount ?>  <?php echo htmlspecialchars($item['question']); ?>
+                                </button>
+                            </div>
+                            <div id="<?php echo $uniqueId; ?>" 
+                                 class="accordion-collapse collapse <?php echo $isFirst ? 'show' : ''; ?>" 
+                                 aria-labelledby="<?php echo $headerId; ?>" 
+                                 data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    <p class="faq-text"><?= ' ' ?><?php echo nl2br(htmlspecialchars($item['answer'])); ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php
+                        $faqCount++;
+                    endforeach;
+                    ?>
+                </div>
+                <?php } ?>
             </div>
-
+            <?php if (!empty($recentBlog)) { ?>
             <div class="col-xxl-4 col-lg-5">
                 <aside class="sidebar-area">
-                    
-                  
-
                     <div class="widget">
                         <h3 class="widget_title">Recent Posts</h3>
                         <div class="recent-post-wrap">
+                            <?php foreach ($recentBlog as $recentItem) { ?>
                             <div class="recent-post">
-                                <div class="media-img"><a href="javascript:void(0)"><img src="../assets/img/blog/recent-post-1-1.jpg" alt="Post"></a></div>
+                                <div class="media-img"><a href="?slug=<?= urlencode($recentItem['slug']) ?>"><img src="<?= htmlspecialchars($recentItem['image']) ?>" alt="<?= htmlspecialchars($recentItem['title']) ?>" style="width:100px; height:80px; object-fit: cover;"></a></div>
                                 <div class="media-body">
-                                    <h4 class="post-title"><a class="text-inherit" href="javascript:void(0)">Electrical Safety Tips Every Homeowner Should Know</a></h4>
-                                    <div class="recent-post-meta"><i class="far fa-calendar"></i>12 Jan, 2025</div>
+                                    <h4 class="post-title mb-0"><a class="text-inherit" href="?slug=<?= urlencode($recentItem['slug']) ?>"><?= htmlspecialchars($recentItem['title']) ?></a></h4>
+                                    <div class="recent-post-meta"><i class="far fa-calendar"></i> <?= date('d M, Y', strtotime($recentItem['Created_At'])) ?></div>
                                 </div>
                             </div>
-                            <div class="recent-post">
-                                <div class="media-img"><a href="javascript:void(0)"><img src="../assets/img/blog/recent-post-1-2.jpg" alt="Post"></a></div>
-                                <div class="media-body">
-                                    <h4 class="post-title"><a class="text-inherit" href="javascript:void(0)">How to Maintain Your AC for Better Efficiency</a></h4>
-                                    <div class="recent-post-meta"><i class="far fa-calendar"></i>10 Jan, 2025</div>
-                                </div>
-                            </div>
-                            <div class="recent-post">
-                                <div class="media-img"><a href="javascript:void(0)"><img src="../assets/img/blog/recent-post-1-3.jpg" alt="Post"></a></div>
-                                <div class="media-body">
-                                    <h4 class="post-title"><a class="text-inherit" href="javascript:void(0)">Benefits of Regular Home Maintenance</a></h4>
-                                    <div class="recent-post-meta"><i class="far fa-calendar"></i>8 Jan, 2025</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="widget widget_banner background-image" style="background-image: url('../assets/img/bg/widget_banner.jpg');">
-                        <div class="widget-banner">
-                            <h3 class="box-title">Need Professional Help?</h3>
-                            <div class="logo"><img src="../assets/img/logo.svg" alt="Logo"></div>
-                            <p class="box-text">Call us anytime</p>
-                            <h3 class="box-link"><a href="tel:+0123456789">+0 (123) 456 789</a></h3>
-                            <a href="javascript:void(0)" class="th-btn style2">Get a Quote</a>
+                            <?php } ?>
                         </div>
                     </div>
                 </aside>
             </div>
+            <?php } ?>
         </div>
     </div>
 </section>
 
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/pannels/Footer-top.php'); ?>
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/pannels/Footer-bottom.php'); ?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Footer-top.php'); ?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Footer-bottom.php'); ?>

@@ -153,7 +153,7 @@ while ($row = $categoryQuery->fetch_assoc()) {
                 <aside class="sidebar-area">
                    
                     <div class="widget widget_categories">
-                        <h3 class="widget_title">Categories</h3>
+                        <h3 class="widget_title">ServiceCategories</h3>
                         <ul>
                             <?php
 

@@ -1,4 +1,8 @@
-<?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Header-top.php') ?>
+<?php
+
+include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Header-top.php')
+
+?>
 
 <?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Header-bottom.php') ?>
 <?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Menu.php') ?>

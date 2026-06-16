@@ -6,14 +6,14 @@ RewriteBase /
 # /sbs.php?id=6 OR /sbs?id=6
 # -> /sbs/6
 # =====================================
-RewriteCond %{QUERY_STRING} ^id=([0-9]+)$ [NC]
-RewriteRule ^sbs(?:\.php)?$ /sbs/%1? [R=301,L]
+# RewriteCond %{QUERY_STRING} ^id=([0-9]+)$ [NC]
+# RewriteRule ^sbs(?:\.php)?$ /sbs/%1? [R=301,L]
 
 # =====================================
 # Internal Rewrite
 # /sbs/6 -> sbs.php?id=6
 # =====================================
-RewriteRule ^sbs/([0-9]+)/?$ sbs.php?id=$1 [L,QSA]
+# RewriteRule ^sbs/([0-9]+)/?$ sbs.php?id=$1 [L,QSA]
 
 # =====================================
 # Remove .php extension
