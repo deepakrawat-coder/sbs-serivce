@@ -1,3 +1,26 @@
+<?php require('../admin/includes/conn.php'); ?>
+
+<?php
+
+$productId = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+// print_r($productId);
+// exit();
+
+$testimonialsData = [];
+$testimonialsQuery = $conn->query("SELECT * FROM testimonials WHERE Product_id  = $productId AND Status = 1 ORDER BY ID ASC");
+while ($testimonials = $testimonialsQuery->fetch_assoc()) {
+    $testimonialsData[] = $testimonials;
+
+
+}
+// echo "<pre>";
+// print_r($testimonialsData);
+// echo "</pre>";
+// exit();
+
+?>
+
 <section class="testi-sec3" id="testi-sec" data-bg-src="../assets/img/bg/testi_bg_3.png">
     <div class="container">
         <div class="row align-items-center">
@@ -10,28 +33,30 @@
                         </span>
                         <h2 class="sec-title text-white">What our clients say</h2>
                     </div>
-                    <div class="swiper th-slider has-shadow" id="testiSlider3" data-slider-options='{"paginationType":"fraction"}'>
+                    <div class="swiper th-slider has-shadow" id="testiSlider3"
+                        data-slider-options='{"paginationType":"fraction"}'>
                         <div class="swiper-wrapper">
                             <!-- Testimonial 1 -->
-                            <div class="swiper-slide">
-                                <div class="testi-box">
-                                    <div class="box-review">
-                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                        <i class="fa-sharp fa-solid fa-star"></i>
-                                        <i class="fa-sharp fa-solid fa-star"></i>
+                            <?php foreach ($testimonialsData as $test): ?>
+                                <div class="swiper-slide">
+                                    <div class="testi-box">
+                                        <div class="box-review">
+                                            <i class="fa-sharp fa-solid fa-star"></i>
+                                            <i class="fa-sharp fa-solid fa-star"></i>
+                                            <i class="fa-sharp fa-solid fa-star"></i>
+                                            <i class="fa-sharp fa-solid fa-star"></i>
+                                            <i class="fa-sharp fa-solid fa-star"></i>
+                                        </div>
+                                        <p class="box-text">
+                                            <?= ($test['Content']) ?>
+                                        </p>
+                                        <h3 class="box-title"> <?= ($test['Name']) ?></h3>
+                                        <p class="box-desig"> <?= ($test['Title']) ?></p>
                                     </div>
-                                    <p class="box-text">
-                                        Lord Krishna Manpower provided excellent skilled workers for our factory. Their deployment was quick,
-                                        documentation was complete, and the workers were professional. Highly recommended for all manpower needs.
-                                    </p>
-                                    <h3 class="box-title">Rajesh Mehta</h3>
-                                    <p class="box-desig">Factory Owner</p>
                                 </div>
-                            </div>
+                            <?php endforeach; ?>
                             <!-- Testimonial 2 -->
-                            <div class="swiper-slide">
+                            <!-- <div class="swiper-slide">
                                 <div class="testi-box">
                                     <div class="box-review">
                                         <i class="fa-sharp fa-solid fa-star"></i>
@@ -47,9 +72,9 @@
                                     <h3 class="box-title">Priya Singhania</h3>
                                     <p class="box-desig">HR Manager</p>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- Testimonial 3 -->
-                            <div class="swiper-slide">
+                            <!-- <div class="swiper-slide">
                                 <div class="testi-box">
                                     <div class="box-review">
                                         <i class="fa-sharp fa-solid fa-star"></i>
@@ -65,9 +90,9 @@
                                     <h3 class="box-title">Amit Kumar</h3>
                                     <p class="box-desig">Business Owner</p>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- Testimonial 4 -->
-                            <div class="swiper-slide">
+                            <!-- <div class="swiper-slide">
                                 <div class="testi-box">
                                     <div class="box-review">
                                         <i class="fa-sharp fa-solid fa-star"></i>
@@ -83,9 +108,9 @@
                                     <h3 class="box-title">Neha Gupta</h3>
                                     <p class="box-desig">Office Manager</p>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- Testimonial 5 -->
-                            <div class="swiper-slide">
+                            <!-- <div class="swiper-slide">
                                 <div class="testi-box">
                                     <div class="box-review">
                                         <i class="fa-sharp fa-solid fa-star"></i>
@@ -101,9 +126,9 @@
                                     <h3 class="box-title">Sunil Patil</h3>
                                     <p class="box-desig">Plant Head</p>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- Testimonial 6 -->
-                            <div class="swiper-slide">
+                            <!-- <div class="swiper-slide">
                                 <div class="testi-box">
                                     <div class="box-review">
                                         <i class="fa-sharp fa-solid fa-star"></i>
@@ -119,7 +144,7 @@
                                     <h3 class="box-title">Anjali Sharma</h3>
                                     <p class="box-desig">Operations Director</p>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="slider-controller">
@@ -132,7 +157,8 @@
                         </button>
                     </div>
                     <div class="testi-box-tab" data-slider-tab="#testiSlider3">
-                        <div class="tab-btn active"><img src="../assets/img/testimonial/testi_2_1.jpg" alt="avatar"></div>
+                        <div class="tab-btn active"><img src="../assets/img/testimonial/testi_2_1.jpg" alt="avatar">
+                        </div>
                         <div class="tab-btn"><img src="../assets/img/testimonial/testi_2_2.jpg" alt="avatar"></div>
                         <div class="tab-btn"><img src="../assets/img/testimonial/testi_2_3.jpg" alt="avatar"></div>
                         <div class="tab-btn"><img src="../assets/img/testimonial/testi_2_4.jpg" alt="avatar"></div>

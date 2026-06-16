@@ -2,89 +2,58 @@
 
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/pannels/Header-bottom.php') ?>
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/pannels/Menu.php') ?>
-<?php
 
-$productId = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
-// print_r($productId);
-// exit;
 
-// $bannerData = [];
-// $bannerQuery = $conn->query('SELECT * FROM `banner` WHERE Product_id  = $productId AND Status = 1 ORDER BY ID DESC');
-// while ($banner = $bannerQuery->fetch_assoc()) {
-//     $bannerData[] = $banner;
-// }
-
-$bannerQuery = $conn->query("SELECT *  FROM banner  WHERE Product_id = $productId AND Status = 1 ORDER BY ID DESC LIMIT 1");
-$bannerData = $bannerQuery->fetch_assoc();
-
-$imageArray = explode(',', $bannerData['Image']);
-
-// echo "<pre>";
-// print_r($imageArray);
-// echo "</pre>";
-// exit();
-
-$clientsData = [];
-$ourClients = $conn->query("SELECT * FROM our_trusted_clients WHERE Product_id = $productId AND Status = 1 ORDER BY ID DESC");
-while ($ourClientsData = $ourClients->fetch_assoc()) {
-    $clientsData[] = $ourClientsData;
+$bannerData = [];
+$bannerQuery = $conn->query('SELECT * FROM `banner` WHERE Status = 1 ORDER BY ID DESC');
+while ($banner = $bannerQuery->fetch_assoc()) {
+    $bannerData[] = $banner;
 
 }
 
-$aboutQuery = $conn->query("SELECT *  FROM about_us  WHERE Product_id = $productId AND Status = 1 ORDER BY ID DESC LIMIT 1");
-$aboutData = $aboutQuery->fetch_assoc();
 
-// echo "<pre>";
-// print_r($aboutData);
-// echo "</pre>";
-// exit();
+    // echo "<pre>";
+    // print_r($bannerData);
+    // echo "</pre>";
+    // exit;
 
-$contactQuery = $conn->query("SELECT *  FROM contact  WHERE Product_id = $productId AND Status = 1 ORDER BY ID DESC LIMIT 1");
-$contactData = $contactQuery->fetch_assoc();
-
-// echo "<pre>";
-// print_r($contactData );
-// echo "</pre>";
-// exit();
 
 ?>
-
 <div class="th-hero-wrapper hero-5 slider-area" id="hero">
     <div class="swiper th-slider" id="heroSlide5" data-slider-options='{"effect":"fade","autoHeight":true}'>
         <div class="swiper-wrapper">
-
-            <?php foreach ($imageArray as $image): ?>
-                <div class="swiper-slide">
-                    <div class="hero-inner" data-bg-src="../admin-assets/img/banner/<?php echo trim($image); ?>">
-
-                        <div class="container">
-                            <div class="hero-style5">
-                                <span class="sub-title2" data-ani="slideinup" data-ani-delay="0.1s"><span
-                                        class="line"></span><img src="../assets/img/hero/battery_icon.svg"
-                                        alt="shape" /><?= ($bannerData['Name']) ?></span>
-
-                                <h1 class="hero-title">
-                                    <span class="title1" data-ani="slideinup"
-                                        data-ani-delay="0.2s"><?= ($bannerData['Title']) ?></span>
-                                    <span class="title2" data-ani="slideinup" data-ani-delay="0.4s"><span
-                                            class="text-theme">Electrical</span> Services</span>
-                                </h1>
-
-                                <p class="hero-text" data-ani="slideinup" data-ani-delay="0.6s">
-                                    <?= ($bannerData['Content']) ?>
-                                </p>
-                                <div class="btn-group" data-ani="slideinup" data-ani-delay="0.8s">
-                                    <a href="javascript:void(0)" class="th-btn rounded-12 style2">Our All Services<i
-                                            class="fas fa-arrow-right ms-2"></i></a>
-                                </div>
+            <div class="swiper-slide">
+                <div class="hero-inner" data-bg-src="../assets/img/hero/hero_bg_5_1.jpg">
+                    <div class="container">
+                        <div class="hero-style5">
+                            <span class="sub-title2" data-ani="slideinup" data-ani-delay="0.1s"><span
+                                    class="line"></span><img src="../assets/img/hero/battery_icon.svg"
+                                    alt="shape" />Welcome To Rakar</span>
+                            <h1 class="hero-title">
+                                <span class="title1" data-ani="slideinup" data-ani-delay="0.2s">We are expert in</span>
+                                <span class="title2" data-ani="slideinup" data-ani-delay="0.4s"><span
+                                        class="text-theme">Electrical</span> Services</span>
+                            </h1>
+                            <p class="hero-text" data-ani="slideinup" data-ani-delay="0.6s">
+                                We believe in providing top quality workman and are so
+                                confident in our level of service that we back it up
+                            </p>
+                            <div class="btn-group" data-ani="slideinup" data-ani-delay="0.8s">
+                                <a href="javascript:void(0)" class="th-btn rounded-12 style2">Our All Services<i
+                                        class="fas fa-arrow-right ms-2"></i></a>
+                                <!-- <a
+                                    href="https://www.youtube.com/watch?v=_sI_Ps7JSEk"
+                                    class="popup-video video-btn">
+                                    <div class="play-btn"><i class="fas fa-play"></i></div>
+                                    Play Video
+                                </a> -->
                             </div>
                         </div>
                     </div>
                 </div>
-            <?php endforeach; ?>
-
-            <!-- <div class="swiper-slide">
+            </div>
+            <div class="swiper-slide">
                 <div class="hero-inner" data-bg-src="../assets/img/hero/hero_bg_5_2.jpg">
                     <div class="container">
                         <div class="hero-style5">
@@ -103,12 +72,18 @@ $contactData = $contactQuery->fetch_assoc();
                             <div class="btn-group" data-ani="slideinup" data-ani-delay="0.8s">
                                 <a href="javascript:void(0)" class="th-btn rounded-12 style2">Our All Services<i
                                         class="fas fa-arrow-right ms-2"></i></a>
+                                <!-- <a
+                                    href="https://www.youtube.com/watch?v=_sI_Ps7JSEk"
+                                    class="popup-video video-btn">
+                                    <div class="play-btn"><i class="fas fa-play"></i></div>
+                                    Play Video
+                                </a> -->
                             </div>
                         </div>
                     </div>
                 </div>
-            </div> -->
-            <!-- <div class="swiper-slide">
+            </div>
+            <div class="swiper-slide">
                 <div class="hero-inner" data-bg-src="../assets/img/hero/hero_bg_5_3.jpg">
                     <div class="container">
                         <div class="hero-style5">
@@ -127,11 +102,17 @@ $contactData = $contactQuery->fetch_assoc();
                             <div class="btn-group" data-ani="slideinup" data-ani-delay="0.8s">
                                 <a href="javascript:void(0)" class="th-btn rounded-12 style2">Our All Services<i
                                         class="fas fa-arrow-right ms-2"></i></a>
+                                <!-- <a
+                                    href="https://www.youtube.com/watch?v=_sI_Ps7JSEk"
+                                    class="popup-video video-btn">
+                                    <div class="play-btn"><i class="fas fa-play"></i></div>
+                                    Play Video
+                                </a> -->
                             </div>
                         </div>
                     </div>
                 </div>
-            </div> -->
+            </div>
         </div>
         <div class="slider-pagination"></div>
     </div>
@@ -149,78 +130,76 @@ $contactData = $contactQuery->fetch_assoc();
         <div class="swiper th-slider" id="brandSlider2"
             data-slider-options='{"spaceBetween":30,"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"2"},"768":{"slidesPerView":"3"},"992":{"slidesPerView":"4"},"1200":{"slidesPerView":"4"},"1300":{"slidesPerView":"5"},"1500":{"slidesPerView":"7"}}}'>
             <div class="swiper-wrapper">
-                <?php foreach ($clientsData as $our_clients): ?>
-                    <div class="swiper-slide">
-                        <div class="brand-card">
-                            <img src="/admin/<?= $our_clients['Image']; ?>" alt="Brand Logo">
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-                <!-- <div class="swiper-slide">
-                    <div class="brand-card">
-                        <img src="../assets/img/brand/brand_3_2.svg" alt="Brand Logo" />
-                    </div>
-                </div> -->
-                <!-- <div class="swiper-slide">
-                    <div class="brand-card">
-                        <img src="../assets/img/brand/brand_3_3.svg" alt="Brand Logo" />
-                    </div>
-                </div> -->
-                <!-- <div class="swiper-slide">
-                    <div class="brand-card">
-                        <img src="../assets/img/brand/brand_3_4.svg" alt="Brand Logo" />
-                    </div>
-                </div> -->
-                <!-- <div class="swiper-slide">
-                    <div class="brand-card">
-                        <img src="../assets/img/brand/brand_3_5.svg" alt="Brand Logo" />
-                    </div>
-                </div> -->
-                <!-- <div class="swiper-slide">
-                    <div class="brand-card">
-                        <img src="../assets/img/brand/brand_3_6.svg" alt="Brand Logo" />
-                    </div>
-                </div> -->
-                <!-- <div class="swiper-slide">
-                    <div class="brand-card">
-                        <img src="../assets/img/brand/brand_3_7.svg" alt="Brand Logo" />
-                    </div>
-                </div> -->
-                <!-- <div class="swiper-slide">
+                <div class="swiper-slide">
                     <div class="brand-card">
                         <img src="../assets/img/brand/brand_3_1.svg" alt="Brand Logo" />
                     </div>
-                </div> -->
-                <!-- <div class="swiper-slide">
+                </div>
+                <div class="swiper-slide">
                     <div class="brand-card">
                         <img src="../assets/img/brand/brand_3_2.svg" alt="Brand Logo" />
                     </div>
-                </div> -->
-                <!-- <div class="swiper-slide">
+                </div>
+                <div class="swiper-slide">
                     <div class="brand-card">
                         <img src="../assets/img/brand/brand_3_3.svg" alt="Brand Logo" />
                     </div>
-                </div> -->
-                <!-- <div class="swiper-slide">
+                </div>
+                <div class="swiper-slide">
                     <div class="brand-card">
                         <img src="../assets/img/brand/brand_3_4.svg" alt="Brand Logo" />
                     </div>
-                </div> -->
-                <!-- <div class="swiper-slide">
+                </div>
+                <div class="swiper-slide">
                     <div class="brand-card">
                         <img src="../assets/img/brand/brand_3_5.svg" alt="Brand Logo" />
                     </div>
-                </div> -->
-                <!-- <div class="swiper-slide">
+                </div>
+                <div class="swiper-slide">
                     <div class="brand-card">
                         <img src="../assets/img/brand/brand_3_6.svg" alt="Brand Logo" />
                     </div>
-                </div> -->
-                <!-- <div class="swiper-slide">
+                </div>
+                <div class="swiper-slide">
                     <div class="brand-card">
                         <img src="../assets/img/brand/brand_3_7.svg" alt="Brand Logo" />
                     </div>
-                </div> -->
+                </div>
+                <div class="swiper-slide">
+                    <div class="brand-card">
+                        <img src="../assets/img/brand/brand_3_1.svg" alt="Brand Logo" />
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="brand-card">
+                        <img src="../assets/img/brand/brand_3_2.svg" alt="Brand Logo" />
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="brand-card">
+                        <img src="../assets/img/brand/brand_3_3.svg" alt="Brand Logo" />
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="brand-card">
+                        <img src="../assets/img/brand/brand_3_4.svg" alt="Brand Logo" />
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="brand-card">
+                        <img src="../assets/img/brand/brand_3_5.svg" alt="Brand Logo" />
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="brand-card">
+                        <img src="../assets/img/brand/brand_3_6.svg" alt="Brand Logo" />
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="brand-card">
+                        <img src="../assets/img/brand/brand_3_7.svg" alt="Brand Logo" />
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -233,10 +212,14 @@ $contactData = $contactQuery->fetch_assoc();
                     <div class="title-area mb-37">
                         <span class="sub-title2">About Us</span>
                         <h2 class="sec-title">
-                            <?= ($aboutData['Name']) ?>
+                            We Provide Professional Plumbing & Electric Solutions For Your Home.
                         </h2>
                         <p class="sec-text">
-                            <?= ($aboutData['Content']) ?>
+                            SRG has the power to fix things fast.TM Embrace the ease
+                            of 24/7 emergency service with SRG's reliable customer
+                            support. Our skilled service professionals prioritize quality,
+                            respect your home, and provide transparent upfront pricing
+                            for your peace of mind.
                         </p>
                     </div>
                     <div class="about-media-wrap">
@@ -267,7 +250,7 @@ $contactData = $contactQuery->fetch_assoc();
                             <div class="media-body">
                                 <p class="box-label">Call Us 24/7</p>
                                 <h6 class="box-link">
-                                    <a href="tel:+0123456789"><?= ($aboutData['Phone']) ?></a>
+                                    <a href="tel:+0123456789">+0 (123) 456 789</a>
                                 </h6>
                             </div>
                         </div>
@@ -277,9 +260,7 @@ $contactData = $contactQuery->fetch_assoc();
             <div class="col-xl-6 mb-35 mb-xl-0">
                 <div class="img-box5">
                     <div class="img1">
-                        <!-- <img src="../assets/img/normal/about_5.png" alt="About" style="height:717px;" /> -->
-                        <img src="/admin/<?= $aboutData['Image']; ?>" alt="About" style="height:717px;" />
-
+                        <img src="../assets/img/normal/about_5.png" alt="About" style="height:717px;" />
                     </div>
                     <div class="customer-box">
                         <div class="box-img">
@@ -730,8 +711,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/parts/srg-process.php');
                                     </div>
                                     <div class="media-body">
                                         <p class="box-text">
-                                            <!-- 789 Inner Lane, Holy park, California, USA -->
-                                             <?=($contactData['Address'])?>
+                                            789 Inner Lane, Holy park, California, USA
                                         </p>
                                     </div>
                                 </div>
@@ -745,7 +725,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/parts/srg-process.php');
                                     <div class="media-body">
                                         <h4 class="box-label">Call Us:</h4>
                                         <p class="box-text">
-                                            <a href="tel:+09876543210"><?=($contactData['Phone'])?></a>
+                                            <a href="tel:+09876543210">+09 876 543 210</a>
                                         </p>
                                     </div>
                                 </div>
@@ -754,7 +734,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/parts/srg-process.php');
                                     <div class="media-body">
                                         <h4 class="box-label">Email Us:</h4>
                                         <p class="box-text">
-                                            <a href="mailto:support24@rakar.com"><?=($contactData['Email'])?></a>
+                                            <a href="mailto:support24@rakar.com">support24@srg.com</a>
                                         </p>
                                     </div>
                                 </div>
@@ -816,7 +796,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/parts/srg-process.php');
         </div>
     </div>
 </section>
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/parts/srg-feedback.php') ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . '/parts/srg-testimonial.php') ?>
 <section class="space" id="blog-sec">
     <div class="container">
         <div class="row justify-content-between align-items-center">

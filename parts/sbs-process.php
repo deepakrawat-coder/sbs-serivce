@@ -1,3 +1,31 @@
+<?php require('../admin/includes/conn.php'); ?>
+
+<?php
+
+$productId = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+// print_r($productId);
+// exit();
+
+$workingProcessData = [];
+$workingProcessQuery = $conn->query("SELECT * FROM working_process WHERE Product_id  = $productId AND Status = 1 ORDER BY ID ASC");
+while ($workingProcess = $workingProcessQuery->fetch_assoc()) {
+    $workingProcessData[] = $workingProcess;
+
+
+}
+// echo "<pre>";
+// print_r($workingProcessData);
+// echo "</pre>";
+// exit();
+
+?>
+
+
+
+
+
+
 <section class="ovberflow-hidden space shape-mockup-wrap">
     <!-- <div class="shape-mockup spin" style="top: 24%; right: 4%;">
         <img src="../assets/img/shape/gear_1.svg" alt="shape">
@@ -11,8 +39,7 @@
             <span class="sub-title"><span class="line"></span>Working Process</span>
             <h2 class="sec-title">How SBS Works</h2>
             <p class="sec-text">
-                Our team of security experts & sanitary engineers is ready to assist you with complete safety and hygiene solutions.
-                Contact us today to get started.
+                <?= $workingProcessData[0]['Description'] ?? '' ?>
             </p>
         </div>
         <!-- <div class="row gy-4 justify-content-center">
@@ -62,18 +89,20 @@
             </div>
         </div> -->
         <div class="row gy-4 justify-content-center">
-            <div class="col-xl-3 col-md-6">
-                <div class="process-card">
-                    <div class="box-number">01</div>
-                    <div class="box-content bg-black">
-                        <h3 class="box-title text-white">Request Consultation</h3>
-                        <p class="box-text text-mute">
-                            Call or fill the form for security & sanitary service needs
-                        </p>
+            <?php foreach ($workingProcessData as $index => $process): ?>
+                <div class="col-xl-3 col-md-6">
+                    <div class="process-card">
+                        <div class="box-number"><?= str_pad($index + 1, 2, '0', STR_PAD_LEFT); ?></div>
+                        <div class="box-content bg-black">
+                            <h3 class="box-title text-white"> <?= ($process['Title']); ?></h3>
+                            <p class="box-text text-mute">
+                                <?= ($process['Content']); ?>
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
+            <?php endforeach; ?>
+            <!-- <div class="col-xl-3 col-md-6">
                 <div class="process-card">
                     <div class="box-number">02</div>
                     <div class="box-content bg-black">
@@ -83,8 +112,8 @@
                         </p>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
+            </div> -->
+            <!-- <div class="col-xl-3 col-md-6">
                 <div class="process-card">
                     <div class="box-number">03</div>
                     <div class="box-content bg-black">
@@ -94,8 +123,8 @@
                         </p>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
+            </div> -->
+            <!-- <div class="col-xl-3 col-md-6">
                 <div class="process-card">
                     <div class="box-number">04</div>
                     <div class="box-content bg-black">
@@ -105,7 +134,7 @@
                         </p>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>

@@ -1,3 +1,33 @@
+<?php require('../admin/includes/conn.php'); ?>
+
+<?php
+
+$productId = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+// print_r($productId);
+// exit();
+
+$whyChooseData = [];
+$whyChooseQuery = $conn->query("SELECT * FROM why_choose_us WHERE Product_id  = $productId AND Status = 1 ORDER BY ID ASC");
+while ($whyChoose = $whyChooseQuery->fetch_assoc()) {
+    $whyChooseData[] = $whyChoose;
+
+
+}
+// echo "<pre>";
+// print_r($whyChooseData);
+// echo "</pre>";
+// exit();
+
+?>
+
+
+
+
+
+
+
+
 <div class="overflow-hidden bg-white shape-mockup-wrap" style="background: var(--theme-color) !important;">
     <!-- <div class="shape-mockup spin" style="top: 5%; right: 0%;">
         <img src="../assets/img/shape/lines_1.png" alt="shape">

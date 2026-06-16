@@ -27,6 +27,7 @@ if (isset($_POST['name'])) {
 
         // admin-assets/img/banner ka absolute path
         $uploadDir = dirname(__DIR__, 3) . '/admin-assets/img/banner/';
+
         // Folder create if not exists
         if (!file_exists($uploadDir)) {
             mkdir($uploadDir, 0777, true);
@@ -36,7 +37,7 @@ if (isset($_POST['name'])) {
 
             $tmpName = $_FILES['photo']['tmp_name'][$key];
 
-            $extension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+            $extension = pathinfo($fileName, PATHINFO_EXTENSION);
 
             $newName = time() . '_' . rand(1000, 9999) . '.' . $extension;
 
@@ -49,7 +50,7 @@ if (isset($_POST['name'])) {
                 echo json_encode([
                     'status' => 500,
                     'message' => 'Image upload failed',
-                    'file' => $fileName
+                    'path' => $uploadDir . $newName
                 ]);
                 exit;
             }
@@ -61,11 +62,6 @@ if (isset($_POST['name'])) {
 
         $filename = '/admin-assets/img/default-program.jpg';
     }
-
-
-    // echo "<pre>";
-    // print_r($_FILES['photo']);
-    // exit;
 
     $product_query = $conn->query("SELECT Name FROM product WHERE ID = '$product_ID'");
     if (!$product_query || $product_query->num_rows === 0) {
