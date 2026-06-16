@@ -2,7 +2,7 @@
 
 <?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Header-bottom.php') ?>
 <?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Menu.php') ?>
-<div class="th-hero-wrapper hero-2 slider-area" id="hero" data-bg-src="../assets/img/hero/hero_bg_2.jpg">
+<!-- <div class="th-hero-wrapper hero-2 slider-area" id="hero" data-bg-src="../assets/img/hero/hero_bg_2.jpg">
     <div class="swiper th-slider" id="heroSlide2" data-slider-options='{"effect":"fade","autoHeight":true}'>
         <div class="swiper-wrapper">
             <div class="swiper-slide">
@@ -47,7 +47,160 @@
         </div>
     </div>
     <button data-slider-prev="#heroSlide2" class="slider-arrow slider-prev"><i class="far fa-arrow-left"></i></button> <button data-slider-next="#heroSlide2" class="slider-arrow slider-next"><i class="far fa-arrow-right"></i></button>
-    <!-- <div class="h1 transparen-text">Manpower Services</div> -->
+ 
+</div> -->
+<div class="th-hero-wrapper hero-5 slider-area" id="hero">
+    <div
+        class="swiper th-slider"
+        id="heroSlide5"
+        data-slider-options='{"effect":"fade","autoHeight":true}'>
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div
+                    class="hero-inner"
+                    data-bg-src="../assets/img/hero/hero_bg_5_1.jpg">
+                    <div class="container">
+                        <div class="hero-style5">
+                            <span
+                                class="sub-title2"
+                                data-ani="slideinup"
+                                data-ani-delay="0.1s"><span class="line"></span><img
+                                    src="../assets/img/hero/battery_icon.svg"
+                                    alt="shape" />Welcome To Rakar</span>
+                            <h1 class="hero-title">
+                                <span
+                                    class="title1"
+                                    data-ani="slideinup"
+                                    data-ani-delay="0.2s">We are expert in</span>
+                                <span
+                                    class="title2"
+                                    data-ani="slideinup"
+                                    data-ani-delay="0.4s"><span class="text-theme">Electrical</span> Services</span>
+                            </h1>
+                            <p
+                                class="hero-text"
+                                data-ani="slideinup"
+                                data-ani-delay="0.6s">
+                                We believe in providing top quality workman and are so
+                                confident in our level of service that we back it up
+                            </p>
+                            <div
+                                class="btn-group"
+                                data-ani="slideinup"
+                                data-ani-delay="0.8s">
+                                <a href="javascript:void(0)" class="th-btn rounded-12 style2">Our All Services<i class="fas fa-arrow-right ms-2"></i></a>
+                                <!-- <a
+                                    href="https://www.youtube.com/watch?v=_sI_Ps7JSEk"
+                                    class="popup-video video-btn">
+                                    <div class="play-btn"><i class="fas fa-play"></i></div>
+                                    Play Video
+                                </a> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div
+                    class="hero-inner"
+                    data-bg-src="../assets/img/hero/hero_bg_5_2.jpg">
+                    <div class="container">
+                        <div class="hero-style5">
+                            <span
+                                class="sub-title2"
+                                data-ani="slideinup"
+                                data-ani-delay="0.1s"><span class="line"></span><img
+                                    src="../assets/img/hero/battery_icon.svg"
+                                    alt="shape" />Welcome To Rakar</span>
+                            <h1 class="hero-title">
+                                <span
+                                    class="title1"
+                                    data-ani="slideinup"
+                                    data-ani-delay="0.2s">We are expert in</span>
+                                <span
+                                    class="title2"
+                                    data-ani="slideinup"
+                                    data-ani-delay="0.4s"><span class="text-theme">Electrical</span> Services</span>
+                            </h1>
+                            <p
+                                class="hero-text"
+                                data-ani="slideinup"
+                                data-ani-delay="0.6s">
+                                We believe in providing top quality workman and are so
+                                confident in our level of service that we back it up
+                            </p>
+                            <div
+                                class="btn-group"
+                                data-ani="slideinup"
+                                data-ani-delay="0.8s">
+                                <a href="javascript:void(0)" class="th-btn rounded-12 style2">Our All Services<i class="fas fa-arrow-right ms-2"></i></a>
+                                <!-- <a
+                                    href="https://www.youtube.com/watch?v=_sI_Ps7JSEk"
+                                    class="popup-video video-btn">
+                                    <div class="play-btn"><i class="fas fa-play"></i></div>
+                                    Play Video
+                                </a> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div
+                    class="hero-inner"
+                    data-bg-src="../assets/img/hero/hero_bg_5_3.jpg">
+                    <div class="container">
+                        <div class="hero-style5">
+                            <span
+                                class="sub-title2"
+                                data-ani="slideinup"
+                                data-ani-delay="0.1s"><span class="line"></span><img
+                                    src="../assets/img/hero/battery_icon.svg"
+                                    alt="shape" />Welcome To Rakar</span>
+                            <h1 class="hero-title">
+                                <span
+                                    class="title1"
+                                    data-ani="slideinup"
+                                    data-ani-delay="0.2s">We are expert in</span>
+                                <span
+                                    class="title2"
+                                    data-ani="slideinup"
+                                    data-ani-delay="0.4s"><span class="text-theme">Electrical</span> Services</span>
+                            </h1>
+                            <p
+                                class="hero-text"
+                                data-ani="slideinup"
+                                data-ani-delay="0.6s">
+                                We believe in providing top quality workman and are so
+                                confident in our level of service that we back it up
+                            </p>
+                            <div
+                                class="btn-group"
+                                data-ani="slideinup"
+                                data-ani-delay="0.8s">
+                                <a href="javascript:void(0)" class="th-btn rounded-12 style2">Our All Services<i class="fas fa-arrow-right ms-2"></i></a>
+                                <!-- <a
+                                    href="https://www.youtube.com/watch?v=_sI_Ps7JSEk"
+                                    class="popup-video video-btn">
+                                    <div class="play-btn"><i class="fas fa-play"></i></div>
+                                    Play Video
+                                </a> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slider-pagination"></div>
+    </div>
+    <div class="icon-box">
+        <button data-slider-prev="#heroSlide5" class="slider-arrow default">
+            <i class="far fa-arrow-left"></i>
+        </button>
+        <button data-slider-next="#heroSlide5" class="slider-arrow default">
+            <i class="far fa-arrow-right"></i>
+        </button>
+    </div>
 </div>
 <div class="overflow-hidden space background-image" id="about-sec" style="background-image: url(&quot;assets/img/bg/pattern_bg_5.png&quot;);">
     <div class="container">
