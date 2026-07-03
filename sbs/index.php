@@ -7,236 +7,134 @@ include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Header-top.php')
 <?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Header-bottom.php') ?>
 <?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Menu.php') ?>
 
-<!-- <div
-    class="th-hero-wrapper hero-4 slider-area"
-    id="hero">
-    <div class="swiper th-slider" id="heroSlide4" data-slider-options='{"effect":"fade","autoHeight":true}'>
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <div class="hero-inner">
-                    <div class="container">
-                        <div class="hero-style4">
-                            <span
-                                class="sub-title2"
-                                data-ani="slideinup"
-                                data-ani-delay="0.1s"><span class="line"></span>welcome to SBS security & sanitary</span>
-                            <h1 class="hero-title">
-                                <span
-                                    class="title1"
-                                    data-ani="slideinup"
-                                    data-ani-delay="0.2s">Your Safety
-                                    <span class="text-theme">& Hygiene</span></span>
-                                <span
-                                    class="title2"
-                                    data-ani="slideinup"
-                                    data-ani-delay="0.4s">Our Top Priority</span>
-                            </h1>
-                            <p
-                                class="hero-text"
-                                data-ani="slideinup"
-                                data-ani-delay="0.6s">
-                                We provide integrated security systems and modern sanitary solutions for homes, offices, and industries
-                            </p>
-                            <div
-                                class="btn-group justify-content-center"
-                                data-ani="slideinup"
-                                data-ani-delay="0.8s">
-                                <a href="javascript:void(0)" class="th-btn rounded-12 style2">Our All Services<i class="fas fa-arrow-right ms-2"></i></a>
-                               
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        class="hero-img"
-                        data-ani="slideinrighthero"
-                        data-ani-delay="0.2s">
-                        <img src="../assets/img/hero/hero_4_1.jpg" alt="Image" />
-                        <div class="box-badge">
-                            <div class="spin-text">
-                                <svg
-                                    version="1.1"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                                    x="0px"
-                                    y="0px"
-                                    width="300px"
-                                    height="300px"
-                                    viewBox="0 0 300 300"
-                                    enable-background="new 0 0 300 300"
-                                    preserveAspectRatio="none"
-                                    xml:space="preserve">
-                                    <defs>
-                                        <path
-                                            id="circlePath-id1"
-                                            d="M 150, 150 m -60, 0 a 60,60 0 0,1 120,0 a 60,60 0 0,1 -120,0 " />
-                                    </defs>
-                                    <circle cx="150" cy="100" r="75" fill="none" />
-                                    <g>
-                                        <use xlink:href="#circlePath-id1" fill="none" />
-                                        <text fill="#fff">
-                                            <textPath xlink:href="#circlePath-id1">
-                                                SBS Security • Sanitary • Protection
-                                            </textPath>
-                                        </text>
-                                    </g>
-                                </svg>
-                            </div>
-                            <div class="box-icon">
-                                <img src="../assets/img/icon/about_badge.svg" alt="icon" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<?php
 
-        </div>
-        <div class="slider-pagination"></div>
-    </div>
-    <button data-slider-next="#heroSlide3" class="slider-arrow slider-next">
-        <i class="far fa-arrow-right"></i>
-    </button>
-</div> -->
+$productId = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+// print_r($productId);
+// exit;
+
+// $bannerData = [];
+// $bannerQuery = $conn->query('SELECT * FROM `banner` WHERE Product_id  = $productId AND Status = 1 ORDER BY ID DESC');
+// while ($banner = $bannerQuery->fetch_assoc()) {
+//     $bannerData[] = $banner;
+// }
+
+$bannerQuery = $conn->query("SELECT *  FROM banner  WHERE Product_id = $productId AND Status = 1 ORDER BY ID DESC LIMIT 1");
+$bannerData = $bannerQuery->fetch_assoc();
+
+$imageArray = explode(',', $bannerData['Image']);
+
+// echo "<pre>";
+// print_r($imageArray);
+// echo "</pre>";
+// exit();
+
+$clientsData = [];
+$ourClients = $conn->query("SELECT * FROM our_trusted_clients WHERE Product_id = $productId AND Status = 1 ORDER BY ID DESC");
+while ($ourClientsData = $ourClients->fetch_assoc()) {
+    $clientsData[] = $ourClientsData;
+}
+
+$aboutQuery = $conn->query("SELECT *  FROM about_us  WHERE Product_id = $productId AND Status = 1 ORDER BY ID DESC LIMIT 1");
+$aboutData = $aboutQuery->fetch_assoc();
+
+// echo "<pre>";
+// print_r($aboutData);
+// echo "</pre>";
+// exit();
+
+$contactQuery = $conn->query("SELECT *  FROM contact  WHERE Product_id = $productId AND Status = 1 ORDER BY ID DESC LIMIT 1");
+$contactData = $contactQuery->fetch_assoc();
+
+// echo "<pre>";
+// print_r($contactData );
+// echo "</pre>";
+// exit();
+
+?>
 <div class="th-hero-wrapper hero-5 slider-area" id="hero">
-    <div
-        class="swiper th-slider"
-        id="heroSlide5"
-        data-slider-options='{"effect":"fade","autoHeight":true}'>
+    <div class="swiper th-slider" id="heroSlide5" data-slider-options='{"effect":"fade","autoHeight":true}'>
         <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <div
-                    class="hero-inner"
-                    data-bg-src="../assets/img/hero/hero_bg_5_1.jpg">
-                    <div class="container">
-                        <div class="hero-style5">
-                            <span
-                                class="sub-title2"
-                                data-ani="slideinup"
-                                data-ani-delay="0.1s"><span class="line"></span><img
-                                    src="../assets/img/hero/battery_icon.svg"
-                                    alt="shape" />Welcome To Rakar</span>
-                            <h1 class="hero-title">
-                                <span
-                                    class="title1"
-                                    data-ani="slideinup"
-                                    data-ani-delay="0.2s">We are expert in</span>
-                                <span
-                                    class="title2"
-                                    data-ani="slideinup"
-                                    data-ani-delay="0.4s"><span class="text-theme">Electrical</span> Services</span>
-                            </h1>
-                            <p
-                                class="hero-text"
-                                data-ani="slideinup"
-                                data-ani-delay="0.6s">
-                                We believe in providing top quality workman and are so
-                                confident in our level of service that we back it up
-                            </p>
-                            <div
-                                class="btn-group"
-                                data-ani="slideinup"
-                                data-ani-delay="0.8s">
-                                <a href="javascript:void(0)" class="th-btn rounded-12 style2">Our All Services<i class="fas fa-arrow-right ms-2"></i></a>
-                                <!-- <a
-                                    href="https://www.youtube.com/watch?v=_sI_Ps7JSEk"
-                                    class="popup-video video-btn">
-                                    <div class="play-btn"><i class="fas fa-play"></i></div>
-                                    Play Video
-                                </a> -->
+
+            <?php foreach ($imageArray as $image): ?>
+                <div class="swiper-slide">
+                    <div class="hero-inner" data-bg-src="../admin-assets/img/banner/<?php echo trim($image); ?>">
+
+                        <div class="container">
+                            <div class="hero-style5">
+                                <span class="sub-title2" data-ani="slideinup" data-ani-delay="0.1s"><span
+                                        class="line"></span><img src="../assets/img/hero/battery_icon.svg"
+                                        alt="shape" /><?= ($bannerData['Name']) ?></span>
+
+                                <h1 class="hero-title">
+                                    <span class="title1" data-ani="slideinup"
+                                        data-ani-delay="0.2s"><?= ($bannerData['Title']) ?></span>
+                                    <span class="title2" data-ani="slideinup" data-ani-delay="0.4s"><span
+                                            class="text-theme">Electrical</span> Services</span>
+                                </h1>
+
+                                <p class="hero-text" data-ani="slideinup" data-ani-delay="0.6s">
+                                    <?= ($bannerData['Content']) ?>
+                                </p>
+                                <div class="btn-group" data-ani="slideinup" data-ani-delay="0.8s">
+                                    <a href="javascript:void(0)" class="th-btn rounded-12 style2">Our All Services<i
+                                            class="fas fa-arrow-right ms-2"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="swiper-slide">
-                <div
-                    class="hero-inner"
-                    data-bg-src="../assets/img/hero/hero_bg_5_2.jpg">
+            <?php endforeach; ?>
+
+            <!-- <div class="swiper-slide">
+                <div class="hero-inner" data-bg-src="../assets/img/hero/hero_bg_5_2.jpg">
                     <div class="container">
                         <div class="hero-style5">
-                            <span
-                                class="sub-title2"
-                                data-ani="slideinup"
-                                data-ani-delay="0.1s"><span class="line"></span><img
-                                    src="../assets/img/hero/battery_icon.svg"
+                            <span class="sub-title2" data-ani="slideinup" data-ani-delay="0.1s"><span
+                                    class="line"></span><img src="../assets/img/hero/battery_icon.svg"
                                     alt="shape" />Welcome To Rakar</span>
                             <h1 class="hero-title">
-                                <span
-                                    class="title1"
-                                    data-ani="slideinup"
-                                    data-ani-delay="0.2s">We are expert in</span>
-                                <span
-                                    class="title2"
-                                    data-ani="slideinup"
-                                    data-ani-delay="0.4s"><span class="text-theme">Electrical</span> Services</span>
+                                <span class="title1" data-ani="slideinup" data-ani-delay="0.2s">We are expert in</span>
+                                <span class="title2" data-ani="slideinup" data-ani-delay="0.4s"><span
+                                        class="text-theme">Electrical</span> Services</span>
                             </h1>
-                            <p
-                                class="hero-text"
-                                data-ani="slideinup"
-                                data-ani-delay="0.6s">
+                            <p class="hero-text" data-ani="slideinup" data-ani-delay="0.6s">
                                 We believe in providing top quality workman and are so
                                 confident in our level of service that we back it up
                             </p>
-                            <div
-                                class="btn-group"
-                                data-ani="slideinup"
-                                data-ani-delay="0.8s">
-                                <a href="javascript:void(0)" class="th-btn rounded-12 style2">Our All Services<i class="fas fa-arrow-right ms-2"></i></a>
-                                <!-- <a
-                                    href="https://www.youtube.com/watch?v=_sI_Ps7JSEk"
-                                    class="popup-video video-btn">
-                                    <div class="play-btn"><i class="fas fa-play"></i></div>
-                                    Play Video
-                                </a> -->
+                            <div class="btn-group" data-ani="slideinup" data-ani-delay="0.8s">
+                                <a href="javascript:void(0)" class="th-btn rounded-12 style2">Our All Services<i
+                                        class="fas fa-arrow-right ms-2"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="swiper-slide">
-                <div
-                    class="hero-inner"
-                    data-bg-src="../assets/img/hero/hero_bg_5_3.jpg">
+            </div> -->
+            <!-- <div class="swiper-slide">
+                <div class="hero-inner" data-bg-src="../assets/img/hero/hero_bg_5_3.jpg">
                     <div class="container">
                         <div class="hero-style5">
-                            <span
-                                class="sub-title2"
-                                data-ani="slideinup"
-                                data-ani-delay="0.1s"><span class="line"></span><img
-                                    src="../assets/img/hero/battery_icon.svg"
+                            <span class="sub-title2" data-ani="slideinup" data-ani-delay="0.1s"><span
+                                    class="line"></span><img src="../assets/img/hero/battery_icon.svg"
                                     alt="shape" />Welcome To Rakar</span>
                             <h1 class="hero-title">
-                                <span
-                                    class="title1"
-                                    data-ani="slideinup"
-                                    data-ani-delay="0.2s">We are expert in</span>
-                                <span
-                                    class="title2"
-                                    data-ani="slideinup"
-                                    data-ani-delay="0.4s"><span class="text-theme">Electrical</span> Services</span>
+                                <span class="title1" data-ani="slideinup" data-ani-delay="0.2s">We are expert in</span>
+                                <span class="title2" data-ani="slideinup" data-ani-delay="0.4s"><span
+                                        class="text-theme">Electrical</span> Services</span>
                             </h1>
-                            <p
-                                class="hero-text"
-                                data-ani="slideinup"
-                                data-ani-delay="0.6s">
+                            <p class="hero-text" data-ani="slideinup" data-ani-delay="0.6s">
                                 We believe in providing top quality workman and are so
                                 confident in our level of service that we back it up
                             </p>
-                            <div
-                                class="btn-group"
-                                data-ani="slideinup"
-                                data-ani-delay="0.8s">
-                                <a href="javascript:void(0)" class="th-btn rounded-12 style2">Our All Services<i class="fas fa-arrow-right ms-2"></i></a>
-                                <!-- <a
-                                    href="https://www.youtube.com/watch?v=_sI_Ps7JSEk"
-                                    class="popup-video video-btn">
-                                    <div class="play-btn"><i class="fas fa-play"></i></div>
-                                    Play Video
-                                </a> -->
+                            <div class="btn-group" data-ani="slideinup" data-ani-delay="0.8s">
+                                <a href="javascript:void(0)" class="th-btn rounded-12 style2">Our All Services<i
+                                        class="fas fa-arrow-right ms-2"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
         <div class="slider-pagination"></div>
     </div>
@@ -249,71 +147,28 @@ include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Header-top.php')
         </button>
     </div>
 </div>
-<div
-    class="overflow-hidden space"
-    id="about-sec">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-xl-6 mb-35 mb-xl-0">
-                <div class="img-box6">
-                    <div class="img1">
-                        <img src="../assets/img/normal/about_4.png" alt="Image" />
-                    </div>
-                    <div class="year-box">
-                        <div class="box-number">
-                            <span class="counter-number">12</span>
-                        </div>
-                        <p class="box-text">Years of Excellence</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-6 text-center text-xl-start">
-                <div class="pe-xxl-5">
-                    <div class="title-area mb-37">
-                        <span class="sub-title"><span class="line"></span>
-                           
-                            About SBS</span>
-                        <h2 class="sec-title">
-                            Complete Security & Sanitary Solutions For Your Safety.
-                        </h2>
-                        <p class="sec-text">
-                            Welcome to SBS when it comes to integrated security systems and modern sanitary solutions, we are the best option.
-                            We provide CCTV surveillance, access control, security guards, and high-efficiency plumbing fixtures for homes,
-                            offices, and industries with complete customer satisfaction.
-                        </p>
-                    </div>
-                    <div class="checklist list-two-column fw-regular">
-                        <ul>
-                            <li>CCTV Surveillance</li>
-                            <li>Security Guards Deployment</li>
-                            <li>Access Control Systems</li>
-                            <li>24/7 Emergency Support</li>
-                            <li>Low-Flow Plumbing Fixtures</li>
-                            <li>Wastewater Management</li>
-                            <li>Affordable Pricing Plans</li>
-                            <li>Free Consultation</li>
-                        </ul>
-                    </div>
-                    <div class="btn-group mt-30 justify-content-center">
-                        <a href="javascript:void(0)" class="th-btn rounded-12 style4">Discover More<i class="far fa-arrow-right ms-2"></i></a>
-                        <div class="call-btn">
-                            <div class="play-btn"><i class="fal fa-phone"></i></div>
-                            <div class="media-body">
-                                <p class="box-label">Call Us 24/7</p>
-                                <h6 class="box-link">
-                                    <a href="tel:+0123456789">+0 (123) 456 789</a>
-                                </h6>
-                            </div>
+<div class="brand-sec3">
+    <div class="brand-inner">
+        <div class="swiper th-slider" id="brandSlider2"
+            data-slider-options='{"spaceBetween":30,"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"2"},"768":{"slidesPerView":"3"},"992":{"slidesPerView":"4"},"1200":{"slidesPerView":"4"},"1300":{"slidesPerView":"5"},"1500":{"slidesPerView":"7"}}}'>
+            <div class="swiper-wrapper">
+                <?php foreach ($clientsData as $our_clients): ?>
+                    <div class="swiper-slide">
+                        <div class="brand-card">
+                            <img src="/admin/<?= $our_clients['Image']; ?>" alt="Brand Logo">
                         </div>
                     </div>
-                </div>
+                <?php endforeach; ?>
+              
             </div>
         </div>
     </div>
 </div>
-
+        
+                  
+      
 <?php include ($_SERVER['DOCUMENT_ROOT'] . '/parts/sbs-services.php') ?>
-<!-- Optional: Custom CSS to match your existing card styles -->
+
 <style>
     .service-card {
         position: relative;
@@ -402,7 +257,7 @@ include ($_SERVER['DOCUMENT_ROOT'] . '/parts/sbs-process.php'); ?>
                             <div class="media-body">
                                 <p class="box-text">
                                     <!-- 789 Inner Lane, Holy park, California, USA -->
-                                     <?=($contactData['Address']) ?>
+                                     <?= ($contactData['Address']) ?>
                                 </p>
                             </div>
                         </div>
@@ -416,7 +271,7 @@ include ($_SERVER['DOCUMENT_ROOT'] . '/parts/sbs-process.php'); ?>
                             <div class="media-body">
                                 <h4 class="box-label">Call Us:</h4>
                                 <p class="box-text">
-                                    <a href="tel:+09876543210"> <?=($contactData['Phone']) ?></a>
+                                    <a href="tel:+09876543210"> <?= ($contactData['Phone']) ?></a>
                                 </p>
                             </div>
                         </div>
@@ -425,7 +280,7 @@ include ($_SERVER['DOCUMENT_ROOT'] . '/parts/sbs-process.php'); ?>
                             <div class="media-body">
                                 <h4 class="box-label">Email Us:</h4>
                                 <p class="box-text">
-                                    <a href="mailto:support24@rakar.com"> <?=($contactData['Email']) ?></a>
+                                    <a href="mailto:support24@rakar.com"> <?= ($contactData['Email']) ?></a>
                                 </p>
                             </div>
                         </div>

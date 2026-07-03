@@ -1,63 +1,163 @@
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/pannels/Header-top.php') ?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Header-top.php') ?>
 
 <?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Header-bottom.php') ?>
 <?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Menu.php') ?>
-<div class="th-hero-wrapper hero-2 slider-area" id="hero" data-bg-src="../assets/img/hero/hero_bg_2.jpg">
-    <div class="swiper th-slider" id="heroSlide2" data-slider-options='{"effect":"fade","autoHeight":true}'>
+<?php
+
+$productId = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+// print_r($productId);
+// exit;
+
+// $bannerData = [];
+// $bannerQuery = $conn->query('SELECT * FROM `banner` WHERE Product_id  = $productId AND Status = 1 ORDER BY ID DESC');
+// while ($banner = $bannerQuery->fetch_assoc()) {
+//     $bannerData[] = $banner;
+// }
+
+$bannerQuery = $conn->query("SELECT *  FROM banner  WHERE Product_id = $productId AND Status = 1 ORDER BY ID DESC LIMIT 1");
+$bannerData = $bannerQuery->fetch_assoc();
+
+$imageArray = explode(',', $bannerData['Image']);
+
+// echo "<pre>";
+// print_r($imageArray);
+// echo "</pre>";
+// exit();
+
+$clientsData = [];
+$ourClients = $conn->query("SELECT * FROM our_trusted_clients WHERE Product_id = $productId AND Status = 1 ORDER BY ID DESC");
+while ($ourClientsData = $ourClients->fetch_assoc()) {
+    $clientsData[] = $ourClientsData;
+}
+
+$aboutQuery = $conn->query("SELECT *  FROM about_us  WHERE Product_id = $productId AND Status = 1 ORDER BY ID DESC LIMIT 1");
+$aboutData = $aboutQuery->fetch_assoc();
+
+// echo "<pre>";
+// print_r($aboutData);
+// echo "</pre>";
+// exit();
+
+$contactQuery = $conn->query("SELECT *  FROM contact  WHERE Product_id = $productId AND Status = 1 ORDER BY ID DESC LIMIT 1");
+$contactData = $contactQuery->fetch_assoc();
+
+// echo "<pre>";
+// print_r($contactData );
+// echo "</pre>";
+// exit();
+
+?>
+<div class="th-hero-wrapper hero-5 slider-area" id="hero">
+    <div class="swiper th-slider" id="heroSlide5" data-slider-options='{"effect":"fade","autoHeight":true}'>
         <div class="swiper-wrapper">
+
             <?php foreach ($imageArray as $image): ?>
                 <div class="swiper-slide">
-                    <div class="hero-inner">
+                    <div class="hero-inner" data-bg-src="../admin-assets/img/banner/<?php echo trim($image); ?>">
+
                         <div class="container">
-                            <div class="hero-style2">
-                                <div class="hero-arrow" data-ani="slideinright" data-ani-delay="0.4s"><img
-                                        src="../assets/img/hero/hero_arrow.svg" alt="Arrow"></div>
-                                <h1 class="hero-title"><span class="title1" data-ani="slideinup"
-                                        data-ani-delay="0.2s"><?= ($bannerData['Title']) ?></span> <span class="title2"
-                                        data-ani="slideinup" data-ani-delay="0.4s">Manpower <span
-                                            class="text-theme">Solutions</span></span></h1>
+                            <div class="hero-style5">
+                                <span class="sub-title2" data-ani="slideinup" data-ani-delay="0.1s"><span
+                                        class="line"></span><img src="../assets/img/hero/battery_icon.svg"
+                                        alt="shape" /><?= ($bannerData['Name']) ?></span>
+
+                                <h1 class="hero-title">
+                                    <span class="title1" data-ani="slideinup"
+                                        data-ani-delay="0.2s"><?= ($bannerData['Title']) ?></span>
+                                    <span class="title2" data-ani="slideinup" data-ani-delay="0.4s"><span
+                                            class="text-theme">Electrical</span> Services</span>
+                                </h1>
+
                                 <p class="hero-text" data-ani="slideinup" data-ani-delay="0.6s">
                                     <?= ($bannerData['Content']) ?>
                                 </p>
-                                <a href="lk-services.html" class="th-btn2 style3" data-ani="slideinup"
-                                    data-ani-delay="0.8s">Our All Services<i class="fas fa-arrow-right"></i></a>
+                                <div class="btn-group" data-ani="slideinup" data-ani-delay="0.8s">
+                                    <a href="javascript:void(0)" class="th-btn rounded-12 style2">Our All Services<i
+                                            class="fas fa-arrow-right ms-2"></i></a>
+                                </div>
                             </div>
                         </div>
-                        <div class="hero-img" data-ani="slideinright" data-ani-delay="0.2s"><img
-                                src="../assets/img/hero/hero_2_1.png" alt="Manpower Solutions"></div>
                     </div>
                 </div>
             <?php endforeach; ?>
+
             <!-- <div class="swiper-slide">
-                <div class="hero-inner">
+                <div class="hero-inner" data-bg-src="../assets/img/hero/hero_bg_5_2.jpg">
                     <div class="container">
-                        <div class="hero-style2">
-                            <div class="hero-arrow" data-ani="slideinright" data-ani-delay="0.4s"><img src="../assets/img/hero/hero_arrow.svg" alt="Arrow"></div>
-                            <h1 class="hero-title"><span class="title1" data-ani="slideinup" data-ani-delay="0.2s">Trusted workforce</span> <span class="title2" data-ani="slideinup" data-ani-delay="0.4s">for <span class="text-theme">Industries</span></span></h1>
-                            <p class="hero-text" data-ani="slideinup" data-ani-delay="0.6s">We provide skilled and semi-skilled workers for industries, factories, offices, and homes across the country.</p>
-                            <a href="lk-services.html" class="th-btn2 style3" data-ani="slideinup" data-ani-delay="0.8s">Hire Workers<i class="fas fa-arrow-right"></i></a>
+                        <div class="hero-style5">
+                            <span class="sub-title2" data-ani="slideinup" data-ani-delay="0.1s"><span
+                                    class="line"></span><img src="../assets/img/hero/battery_icon.svg"
+                                    alt="shape" />Welcome To Rakar</span>
+                            <h1 class="hero-title">
+                                <span class="title1" data-ani="slideinup" data-ani-delay="0.2s">We are expert in</span>
+                                <span class="title2" data-ani="slideinup" data-ani-delay="0.4s"><span
+                                        class="text-theme">Electrical</span> Services</span>
+                            </h1>
+                            <p class="hero-text" data-ani="slideinup" data-ani-delay="0.6s">
+                                We believe in providing top quality workman and are so
+                                confident in our level of service that we back it up
+                            </p>
+                            <div class="btn-group" data-ani="slideinup" data-ani-delay="0.8s">
+                                <a href="javascript:void(0)" class="th-btn rounded-12 style2">Our All Services<i
+                                        class="fas fa-arrow-right ms-2"></i></a>
+                            </div>
                         </div>
                     </div>
-                    <div class="hero-img" data-ani="slideinright" data-ani-delay="0.2s"><img src="../assets/img/hero/hero_2_2.png" alt="Workforce"></div>
                 </div>
             </div> -->
             <!-- <div class="swiper-slide">
-                <div class="hero-inner">
+                <div class="hero-inner" data-bg-src="../assets/img/hero/hero_bg_5_3.jpg">
                     <div class="container">
-                        <div class="hero-style2">
-                            <div class="hero-arrow" data-ani="slideinright" data-ani-delay="0.4s"><img src="../assets/img/hero/hero_arrow.svg" alt="Arrow"></div>
-                            <h1 class="hero-title"><span class="title1" data-ani="slideinup" data-ani-delay="0.2s">Reliable staffing</span> <span class="title2" data-ani="slideinup" data-ani-delay="0.4s">since <span class="text-theme">2010</span></span></h1>
-                            <p class="hero-text" data-ani="slideinup" data-ani-delay="0.6s">Temporary and permanent staffing solutions with complete payroll management and compliance support.</p>
-                            <a href="lk-services.html" class="th-btn2 style3" data-ani="slideinup" data-ani-delay="0.8s">Get Workers<i class="fas fa-arrow-right"></i></a>
+                        <div class="hero-style5">
+                            <span class="sub-title2" data-ani="slideinup" data-ani-delay="0.1s"><span
+                                    class="line"></span><img src="../assets/img/hero/battery_icon.svg"
+                                    alt="shape" />Welcome To Rakar</span>
+                            <h1 class="hero-title">
+                                <span class="title1" data-ani="slideinup" data-ani-delay="0.2s">We are expert in</span>
+                                <span class="title2" data-ani="slideinup" data-ani-delay="0.4s"><span
+                                        class="text-theme">Electrical</span> Services</span>
+                            </h1>
+                            <p class="hero-text" data-ani="slideinup" data-ani-delay="0.6s">
+                                We believe in providing top quality workman and are so
+                                confident in our level of service that we back it up
+                            </p>
+                            <div class="btn-group" data-ani="slideinup" data-ani-delay="0.8s">
+                                <a href="javascript:void(0)" class="th-btn rounded-12 style2">Our All Services<i
+                                        class="fas fa-arrow-right ms-2"></i></a>
+                            </div>
                         </div>
                     </div>
-                    <div class="hero-img" data-ani="slideinright" data-ani-delay="0.2s"><img src="../assets/img/hero/hero_2_3.png" alt="Staffing"></div>
                 </div>
             </div> -->
         </div>
+        <div class="slider-pagination"></div>
     </div>
-    <button data-slider-prev="#heroSlide2" class="slider-arrow slider-prev"><i class="far fa-arrow-left"></i></button> <button data-slider-next="#heroSlide2" class="slider-arrow slider-next"><i class="far fa-arrow-right"></i></button>
-    <!-- <div class="h1 transparen-text">Manpower Services</div> -->
+    <div class="icon-box">
+        <button data-slider-prev="#heroSlide5" class="slider-arrow default">
+            <i class="far fa-arrow-left"></i>
+        </button>
+        <button data-slider-next="#heroSlide5" class="slider-arrow default">
+            <i class="far fa-arrow-right"></i>
+        </button>
+    </div>
+</div>
+<div class="brand-sec3">
+    <div class="brand-inner">
+        <div class="swiper th-slider" id="brandSlider2"
+            data-slider-options='{"spaceBetween":30,"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"2"},"768":{"slidesPerView":"3"},"992":{"slidesPerView":"4"},"1200":{"slidesPerView":"4"},"1300":{"slidesPerView":"5"},"1500":{"slidesPerView":"7"}}}'>
+            <div class="swiper-wrapper">
+                <?php foreach ($clientsData as $our_clients): ?>
+                    <div class="swiper-slide">
+                        <div class="brand-card">
+                            <img src="/admin/<?= $our_clients['Image']; ?>" alt="Brand Logo">
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+              
+            </div>
+        </div>
+    </div>
 </div>
 <div class="overflow-hidden space background-image" id="about-sec"
     style="background-image: url(&quot;assets/img/bg/pattern_bg_5.png&quot;);">
@@ -123,7 +223,7 @@
     </div>
 </div>
 
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/parts/lord-krishna-services.php') ?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/parts/lord-krishna-services.php') ?>
 <!-- <div class="choose-area overflow-hidden space background-image" style="background-image: url('../assets/img/bg/choose_bg_1.png');">
     <div class="container">
         <div class="row justify-content-end">
@@ -160,8 +260,8 @@
         </div>
     </div>
 </div> -->
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/parts/lord-krishna-why-choose.php') ?>
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/parts/lord-krishna-process.php') ?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/parts/lord-krishna-why-choose.php') ?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/parts/lord-krishna-process.php') ?>
 <div class="overflow-hidden bg-white shape-mockup-wrap" id="contact-sec">
     <div class="shape-mockup moving d-none d-xxl-block" style="right: 0%; bottom: 0%;">
         <img src="../assets/img/shape/man_shape_1.png" alt="shape">
@@ -270,7 +370,7 @@
     </div>
 </div>
 
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/parts/lord-krishna-feedback.php') ?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/parts/lord-krishna-feedback.php') ?>
 <section class="space" id="blog-sec">
     <div class="container">
         <div class="row justify-content-between align-items-center">
@@ -468,5 +568,5 @@
         </div>
     </div>
 </div>
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/pannels/Footer-top.php') ?>
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/pannels/Footer-bottom.php') ?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Footer-top.php') ?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/pannels/Footer-bottom.php') ?>
